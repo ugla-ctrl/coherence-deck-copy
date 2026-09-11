@@ -7,7 +7,15 @@
 <meta name="description" content="COHERENCE Gathering. Connected, in spirit. March 19-22, 2027 · Carson Creek Ranch, Austin, Texas." />
 <meta property="og:title" content="Coherence · Event Information" />
 <meta property="og:description" content="A gathering for designers of the New Earth. March 19-22, 2027 · Carson Creek Ranch, Austin, Texas." />
-<meta property="og:image" content="media/hero-bg.png" />
+<meta property="og:url" content="https://info.coherencegathering.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://info.coherencegathering.com/media/og-thumb.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Coherence · Event Information" />
+<meta name="twitter:description" content="A gathering for designers of the New Earth. March 19-22, 2027 · Carson Creek Ranch, Austin, Texas." />
+<meta name="twitter:image" content="https://info.coherencegathering.com/media/og-thumb.jpg" />
 <meta name="theme-color" content="#201712" />
 <link rel="icon" href="media/logo-symbol.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,6 +72,10 @@
   .slide.photo .shade{position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,rgba(23,16,9,.5) 0%,rgba(23,16,9,.28) 40%,rgba(23,16,9,.72) 100%)}
   .slide.photo>*:not(.bg):not(.shade):not(.chip):not(.fd):not(.sec):not(.coverlogo):not(.credit){position:relative;z-index:2}
+  .slide.photo .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .cerestrip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4cqw,20px);margin-top:clamp(16px,3cqh,30px)}
+  .cerestrip figure{margin:0;border-radius:10px;overflow:hidden;aspect-ratio:2/1;background:var(--umber)}
+  .cerestrip img{width:100%;height:100%;object-fit:cover;display:block}
 
   /* ---- slide chrome ---- */
   .chip{position:absolute;top:clamp(20px,4.2cqh,44px);left:var(--edge);z-index:3;display:flex;align-items:center;gap:.7em;
@@ -240,6 +252,8 @@
     table{font-size:.92rem}
     .chip img{height:20px}
     .credit{display:none}
+    .cerestrip{grid-template-columns:1fr;gap:12px}
+    .cerestrip figure{aspect-ratio:16/9}
     #dots{bottom:14px;gap:7px}
     #dots button{width:6px;height:6px}
     .arrows{bottom:12px;right:14px}
@@ -311,12 +325,15 @@
   </section>
 
   <!-- 02 · thesis -->
-  <section class="slide">
+  <section class="slide photo">
+    <div class="bg" style="background-image:url('media/bg-ceremony-circle-poster.jpg')"><video class="bgvid" data-src="media/bg-ceremony-circle.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+    <div class="shade" style="background:linear-gradient(90deg,rgba(23,16,9,.9) 0%,rgba(23,16,9,.68) 55%,rgba(23,16,9,.35) 100%)"></div>
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
     <div class="st eyebrow">The Thesis</div>
     <div class="st poem">In a world of fragmentation, <em>coherence</em> is the scarcest resource.</div>
     <p class="st sub">The fastest-growing movements of our time (consciousness, crypto, AI, climate) are failing to connect. They hold parallel visions of the future with no shared infrastructure between them.</p>
     <p class="st sub"><strong>COHERENCE is the connective tissue.</strong></p>
+    <div class="credit">Gathering circle at Iceland Eclipse 2026 · video Allison Powers</div>
     <div class="sec">01 · Thesis</div><div class="fd">Event Information</div>
   </section>
 
@@ -350,7 +367,9 @@
   </section>
 
   <!-- 04 · four pillars -->
-  <section class="slide">
+  <section class="slide photo">
+    <div class="bg" style="background-image:url('media/ceremony-heart-meditation.jpg');background-position:50% 30%"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(23,16,9,.74) 0%,rgba(23,16,9,.58) 45%,rgba(23,16,9,.84) 100%)"></div>
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
     <div class="st eyebrow">The Experience Arc</div>
     <h2 class="st">Four movements, one field.</h2>
@@ -372,11 +391,14 @@
         <h3>Emerge</h3><p>New ideas, partnerships, and momentum leave with everyone.</p>
       </div>
     </div>
+    <div class="credit">Opening ceremonies at Iceland Eclipse 2026 · photo Lauren Bruno</div>
     <div class="sec">03 · Pillars</div><div class="fd">Event Information</div>
   </section>
 
   <!-- 05 · who converges -->
-  <section class="slide">
+  <section class="slide photo">
+    <div class="bg" style="background-image:url('media/ceremony-garden-blessing.jpg');background-position:center"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(23,16,9,.78) 0%,rgba(23,16,9,.66) 45%,rgba(23,16,9,.86) 100%)"></div>
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
     <div class="st eyebrow">The Audience</div>
     <h2 class="st">Designers of the New Earth.</h2>
@@ -389,6 +411,7 @@
         <ul><li>Artists and musicians</li><li>Designers</li><li>Storytellers</li><li>Technologists and builders</li></ul></div>
     </div>
     <div class="st meets">The meditators meet the engineers. The healers meet the builders.</div>
+    <div class="credit">Ceremony Garden at Iceland Eclipse 2026 · photo Allison Powers</div>
     <div class="sec">04 · Audience</div><div class="fd">Event Information</div>
   </section>
 
@@ -442,7 +465,9 @@
   </section>
 
   <!-- 08 · the days -->
-  <section class="slide">
+  <section class="slide photo">
+    <div class="bg" style="background-image:url('media/bg-ceremony-soundbath-poster.jpg')"><video class="bgvid" data-src="media/bg-ceremony-soundbath.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(23,16,9,.86) 0%,rgba(23,16,9,.8) 45%,rgba(23,16,9,.92) 100%)"></div>
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
     <div class="st eyebrow">The Arc</div>
     <h2 class="st">Gathering, deepening, emerging.</h2>
@@ -459,6 +484,7 @@
       <div class="stat"><div class="n">36</div><div class="l">Workshop sessions</div></div>
       <div class="stat"><div class="n">5</div><div class="l">Keynote visionaries</div></div>
     </div>
+    <div class="credit">Sound bath at Iceland Eclipse 2026 · video Allison Powers</div>
     <div class="sec">08 · Program</div><div class="fd">Event Information</div>
   </section>
 
@@ -487,7 +513,9 @@
   </section>
 
   <!-- 10 · community engine -->
-  <section class="slide">
+  <section class="slide photo">
+    <div class="bg" style="background-image:url('media/bg-ceremony-opening-poster.jpg')"><video class="bgvid" data-src="media/bg-ceremony-opening.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(23,16,9,.74) 0%,rgba(23,16,9,.58) 45%,rgba(23,16,9,.84) 100%)"></div>
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
     <div class="st eyebrow">The Engine</div>
     <h2 class="st">The gathering is days. The community is the product.</h2>
@@ -499,6 +527,7 @@
       <div class="phase"><div class="pn">After · Ongoing</div><h3>Momentum holds</h3>
         <ul><li>Monthly cohort calls, regional meetups</li><li>Collaboration and mentorship pairings</li><li>Target: 45%+ repeat attendance</li></ul></div>
     </div>
+    <div class="credit">Opening ceremonies at Iceland Eclipse 2026 · video Whitney Petters</div>
     <div class="sec">10 · Community</div><div class="fd">Event Information</div>
   </section>
 
@@ -515,6 +544,12 @@
       <div class="stat"><div class="n">Delivered</div><div class="l">Iceland Eclipse · August 2026</div></div>
       <div class="stat"><div class="n">50K+</div><div class="l">Global community · 70+ countries</div></div>
     </div>
+    <div class="st cerestrip">
+      <figure><img src="media/ceremony-water-blessing.jpg" alt="Water blessing ceremony at Iceland Eclipse 2026" loading="lazy" /></figure>
+      <figure><img src="media/ceremony-feather-elder.jpg" alt="Elder leading a feather blessing at Iceland Eclipse 2026" loading="lazy" style="object-position:50% 22%" /></figure>
+      <figure><img src="media/ceremony-prayer-song.jpg" alt="Prayer song at the Sacred Fire, Iceland Eclipse 2026" loading="lazy" style="object-position:50% 35%" /></figure>
+    </div>
+    <div class="credit">Ceremonies at Iceland Eclipse 2026 · photos Daniel, Nanaka</div>
     <div class="sec">14 · Team</div><div class="fd">Event Information</div>
   </section>
 
@@ -562,6 +597,7 @@ const dots=document.getElementById('dots');
 const ctr=document.getElementById('ctr');
 const mandala=document.getElementById('mandala');
 const pad=n=>(n<10?'0':'')+n;
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let i=0;
 slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(n+1));
   b.onclick=()=>go(n);dots.appendChild(b);});
@@ -574,6 +610,10 @@ function go(n){
   const t=i/(slides.length-1);
   mandala.style.transform='rotate('+(t*90)+'deg) scale('+(1+t*0.22)+')';
   if(location.hash!=='#'+(i+1))history.replaceState(null,'','#'+(i+1));
+  slides.forEach((s,k)=>s.querySelectorAll('video.bgvid').forEach(v=>{
+    if(k===i&&!reduceMotion){ if(!v.getAttribute('src')) v.src=v.dataset.src; v.play().catch(()=>{}); }
+    else if(!v.paused) v.pause();
+  }));
 }
 const next=()=>go(i+1), prev=()=>go(i-1);
 document.getElementById('next').onclick=next;
