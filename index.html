@@ -66,6 +66,8 @@
   .slide.active .st:nth-child(6){animation-delay:.35s}
   @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.slide.active .st{animation:none}}
+  br.desk-br{display:block}br.mob-br{display:none}
+  @media (max-width:920px),(orientation:portrait) and (max-width:1200px){br.desk-br{display:none}br.mob-br{display:block}}
 
   .slide.light{background:var(--cream);color:var(--ink)}
   .slide.photo .bg{position:absolute;inset:0;z-index:0;background:url('media/hero-bg.png') center/cover no-repeat}
@@ -319,7 +321,7 @@
     <div class="st eyebrow" style="color:var(--cream-dim)">March 19 to 22, 2027 · Austin, Texas</div>
     <h1 class="st cover-word">COHERENCE</h1>
     <div class="st tagline" style="margin-top:.2em">Connected, in spirit.</div>
-    <p class="st sub" style="max-width:46ch">A 4-day gathering for designers of the New Earth to align, connect, and co-create on the Spring Equinox and Full Moon.</p>
+    <p class="st sub" style="max-width:46ch">A 4-day gathering for designers of the <br class="mob-br">New Earth to align,<br class="desk-br"> connect, and co-create <br class="mob-br">on the Spring Equinox and Full Moon.</p>
 
     <div class="fd">Event Information</div>
   </section>
