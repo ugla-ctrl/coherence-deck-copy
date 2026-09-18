@@ -110,6 +110,9 @@
     font-size:clamp(1.1rem,2.4cqw,2.1rem);letter-spacing:-.01em}
   .sub{font-weight:400;line-height:1.6;font-size:clamp(.92rem,1.6cqw,1.4rem);color:var(--cream-dim);max-width:54ch;
     margin-top:clamp(12px,2.4cqh,24px)}
+  .cover h1{font-size:clamp(2.8rem,8cqw,7.2rem)}
+  .cover .eyebrow{margin-bottom:clamp(6px,1.2cqh,12px)}
+  .cover .sub{font-size:clamp(.8rem,1.24cqw,1.1rem);margin-top:clamp(6px,1.4cqh,14px);line-height:1.5}
   .slide.light .sub{color:var(--ink-dim)}
   p{font-weight:400;line-height:1.6;font-size:clamp(.84rem,1.18cqw,1.06rem);color:var(--cream-dim);max-width:60ch}
   .slide.light p{color:var(--ink-dim)}
@@ -244,6 +247,7 @@
     .slide.center{justify-content:center}
     .slide.photo .bg{background-attachment:scroll}
     h1{font-size:clamp(2.7rem,15vw,5rem);letter-spacing:-.03em}
+    .cover h1{font-size:clamp(2.2rem,11vw,3.8rem)}
     .cover-word{letter-spacing:.02em}
     .poem{font-size:clamp(1.4rem,7vw,2.4rem)}
     h2{font-size:clamp(1.5rem,6.6vw,2.2rem)}
@@ -318,14 +322,15 @@
   </div>
 
   <!-- 01 · cover: mirrors coherencegathering.com -->
-  <section class="slide photo center active">
+  <section class="slide photo center cover active">
     <div class="bg"></div><div class="shade"></div>
     <img class="coverlogo" src="media/logo-symbol.png" alt="Coherence" />
     <div class="st eyebrow" style="color:var(--cream-dim)">March 19 to 22, 2027 · Austin, Texas</div>
     <h1 class="st cover-word">COHERENCE</h1>
     <div class="st tagline" style="margin-top:.2em">The future is bright.</div>
-    <div class="st tagline" style="margin-top:.5em;font-size:clamp(.95rem,2cqw,1.7rem)">Music, Ceremony, &amp; Collective Action</div>
-    <div class="st eyebrow" style="margin-top:.6em;margin-bottom:0;color:var(--cream)">Spring Equinox · Full Moon · World Water Day</div>
+    <p class="st sub" style="max-width:64ch">A 4-day journey for change makers who believe and know we will triumph through our global challenges to create planetary paradise.</p>
+    <div class="st tagline" style="margin-top:.4em;font-size:clamp(.95rem,2cqw,1.7rem)">Music, Ceremony, &amp; Collective Action</div>
+    <div class="st eyebrow" style="margin-top:.4em;margin-bottom:0;color:var(--cream)">Spring Equinox · Full Moon · World Water Day</div>
 
     <div class="fd">Event Information</div>
   </section>
