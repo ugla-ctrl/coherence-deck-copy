@@ -248,6 +248,8 @@
     .slide.photo .bg{background-attachment:scroll}
     h1{font-size:clamp(2.7rem,15vw,5rem);letter-spacing:-.03em}
     .cover h1{font-size:clamp(2.2rem,11vw,3.8rem)}
+    .cover .bg{background-position:50% 55%!important}
+    .cover .shade{background:linear-gradient(180deg,rgba(23,16,9,.82) 0%,rgba(23,16,9,.72) 45%,rgba(23,16,9,.85) 100%)!important}
     .cover-word{letter-spacing:.02em}
     .poem{font-size:clamp(1.4rem,7vw,2.4rem)}
     h2{font-size:clamp(1.5rem,6.6vw,2.2rem)}
@@ -323,7 +325,8 @@
 
   <!-- 01 · cover: mirrors coherencegathering.com -->
   <section class="slide photo center cover active">
-    <div class="bg"></div><div class="shade"></div>
+    <div class="bg" style="background-image:url('media/cover-crowd.jpg');background-position:50% 35%"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(23,16,9,.68) 0%,rgba(23,16,9,.58) 40%,rgba(23,16,9,.78) 100%)"></div>
     <img class="coverlogo" src="media/logo-symbol.png" alt="Coherence" />
     <div class="st eyebrow" style="color:var(--cream-dim)">March 19 to 22, 2027 · Austin, Texas</div>
     <h1 class="st cover-word">COHERENCE</h1>
