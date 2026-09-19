@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Optimist Festival · Schedule</title>
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="description" content="Four days at Carson Creek Ranch, Austin. March 19 to 22, 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#fbf4e8;--ivory:#fffaf1;--ink:#2b1c12;--ink-dim:#5e4a3a;--line:rgba(43,28,18,.14);--copper:#c07a44;--copper-deep:#9a5b2e;--gold:#e9b56f;
+ --amph:#3f7a8a;--cer:#b8683a;--grove:#6e8a5a;--anchor:#7a6a9a;--serif:'Fraunces',Georgia,serif;--sans:'Work Sans','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:0 20px 80px}
+.wrap{max-width:1080px;margin:0 auto}
+header{padding:56px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--copper-deep);font-weight:500}
+h1{font-family:var(--sans);font-weight:500;letter-spacing:.14em;font-size:clamp(2.2rem,6vw,4rem);line-height:1;margin-top:14px}
+h1 small{display:block;font-size:.34em;letter-spacing:.5em;margin-top:.35em;font-weight:500}
+.tag{font-family:var(--serif);font-style:italic;color:var(--copper-deep);font-size:clamp(1.15rem,2.4vw,1.6rem);margin-top:14px}
+.meta{margin-top:14px;font-size:.9rem;color:var(--ink-dim);display:flex;gap:18px;flex-wrap:wrap}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;font-size:.78rem;letter-spacing:.06em;color:var(--ink-dim)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--cream);display:flex;gap:6px;padding:14px 0;border-bottom:1px solid var(--line);overflow-x:auto}
+nav.days a{flex:1 0 auto;text-align:center;padding:10px 14px;border-radius:999px;text-decoration:none;color:var(--ink-dim);font-weight:500;font-size:.86rem;letter-spacing:.06em;border:1px solid transparent}
+nav.days a:hover,nav.days a:focus-visible{border-color:var(--copper);color:var(--ink);outline:none}
+section.day{padding:44px 0 8px;scroll-margin-top:80px}
+.dayhead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.dayhead h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em}
+.dayhead .date{color:var(--ink-dim);font-size:.95rem}
+.theme{font-family:var(--serif);font-style:italic;color:var(--copper-deep);font-size:clamp(1.1rem,2.2vw,1.45rem);margin:2px 0 10px}
+.ev.panel h3::before{content:'Keynote & Panel';display:inline-block;font-family:var(--sans);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--copper-deep);border-radius:4px;padding:2px 7px;margin-right:9px;vertical-align:middle}
+.anchors{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
+.anchor{font-size:.78rem;letter-spacing:.08em;color:var(--anchor);border:1px solid var(--anchor);border-radius:999px;padding:4px 11px;background:rgba(122,106,154,.06)}
+.anchor b{font-weight:600}
+.ev{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:16px 0;border-top:1px solid var(--line)}
+.ev:last-child{border-bottom:1px solid var(--line)}
+.time{font-variant-numeric:tabular-nums;font-size:.9rem;color:var(--ink-dim);line-height:1.5;padding-top:3px}
+.time b{display:block;color:var(--ink);font-weight:600}
+.body h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;letter-spacing:-.01em;line-height:1.2;text-wrap:balance}
+.body .who{font-weight:600;color:var(--copper-deep);margin-top:3px;font-size:.95rem}
+.body p{color:var(--ink-dim);font-size:.95rem;line-height:1.55;max-width:62ch;margin-top:6px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.chip{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:3px 9px;border-radius:999px;color:#fff}
+.chip.stage-amph{background:var(--amph)}.chip.stage-cer{background:var(--cer)}.chip.stage-grove{background:var(--grove)}.chip.stage-none{display:none}
+.chip.type{background:transparent;color:var(--ink-dim);border:1px solid var(--line)}
+.chip.proposed{background:transparent;color:var(--copper-deep);border:1px dashed var(--copper)}
+.ev.music h3{font-family:var(--sans);font-weight:600;letter-spacing:.02em}
+.foot{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink-dim);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.status{font-size:.78rem;color:var(--ink-dim)}
+@media (max-width:560px){.ev{grid-template-columns:1fr;gap:6px}.time b{display:inline}.time{padding-top:0}}
+@media (prefers-reduced-motion:no-preference){.ev{transition:background .2s}.ev:hover{background:rgba(192,122,68,.05)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">March 19 to 22, 2027 · Carson Creek Ranch · Austin, Texas</div>
+  <h1>OPTIMIST<small>FESTIVAL</small></h1>
+  <div class="tag">The future is bright. Here is how the four days unfold.</div>
+  <div class="meta"><span>All times Central.</span><span id="updated" class="status"></span></div>
+  <div class="legend">
+    <span><i style="background:var(--amph)"></i>Amphitheater Stage</span>
+    <span><i style="background:var(--cer)"></i>Ceremony Garden</span>
+    <span><i style="background:var(--grove)"></i>The Grove</span>
+    <span><i style="background:var(--anchor)"></i>Sky &amp; calendar moments</span>
+    <span><i style="background:var(--copper-deep)"></i>Keynote & panel on the day's theme</span>
+  </div>
+</header>
+<nav class="days" id="daynav" aria-label="Days"></nav>
+<main id="days"></main>
+<div class="foot"><span>Schedule is live and subject to change.</span><span>The Optimist Festival · Produced by IMXP and UNIFY</span></div>
+</div>
+
+<script>
+/* ============ CONFIG ============
+   The Google Sheet is the master. This page reads it on every load.
+   Sheet: https://docs.google.com/spreadsheets/d/1IaKgoMfFBt3NScsvp-qFDQL5UGomKeqgRUtmGdfOXRI/edit
+   The "Schedule" tab is published to the web (File > Share > Publish to web, auto-republish on),
+   which is what makes the CSV below readable from any website.
+   If the sheet is ever re-published, paste the new CSV link here. */
+const SHEET_ID = "1IaKgoMfFBt3NScsvp-qFDQL5UGomKeqgRUtmGdfOXRI";
+const GID = "991731362";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQowyrckPwigpRjTptJb8RoLrHyLe2MFIRmOZao78lEOgGvD9h_fb0ZP8KAkfRckACXPYgaDki-5xiw/pub?gid=991731362&single=true&output=csv";
+
+/* Snapshot of the sheet at publish time: used only if the live sheet cannot be reached. */
+const SNAPSHOT = "Day,Date,Start,End,Stage,Title,Type,Lead / Artist,Description (public),Status,Show on web,Internal notes\nFriday,2027-03-19,3:00 PM,6:00 PM,The Grove,\"Arrival, check-in & connect\",Connect,,\"Settle in, find your people, explore the Grove: vendor activations, lounges, biohacking, spa.\",Proposed,Y,Gates time TBC with venue\nMonday,2027-03-22,9:00 AM,10:00 AM,Amphitheater Stage,Morning Yoga,Movement,Flow Yoga,\"A slow, integrative flow on the morning of World Water Day, led by Austin's Flow Yoga.\",Proposed,Y,Third yoga session; studio partnership to confirm\nFriday,2027-03-19,6:00 PM,7:30 PM,Ceremony Garden,Introduction + Opening Ceremony,Ceremony,,,Confirmed,Y,\nFriday,2027-03-19,7:30 PM,9:00 PM,The Grove,Dinner + Mingle,Meal,,,Confirmed,Y,\nFriday,2027-03-19,9:00 PM,11:00 PM,Ceremony Garden,AWARË,Music,AWARË,Opening night set on the river.,Confirmed,Y,\nFriday,2027-03-19,11:00 PM,12:30 AM,The Grove,Chill & connect,Connect,,\"Fire chats, lounges, connection\",Confirmed,Y,Quiet hours / curfew TBC with venue\nSaturday,2027-03-20,,,,Consciousness in AI,Theme,,,Confirmed,Y,Day theme; shown as the day subtitle on the web\nSaturday,2027-03-20,9:00 AM,10:00 AM,Amphitheater Stage,Daybreaker: Movement Hour,Movement,Daybreaker × Present Practice,\"An hour of yoga and movement to wake the body before the dance. The Spring Equinox lands at 9:25 AM, right in the middle of it.\",Confirmed,Y,\nSaturday,2027-03-20,9:25 AM,,,Spring Equinox,Anchor,,\"The exact moment of the equinox, 9:25 AM Central.\",Confirmed,Y,\"Called out, not scheduled around\"\nSaturday,2027-03-20,10:00 AM,12:00 PM,Amphitheater Stage,Daybreaker: Dance Party,Music,Daybreaker,\"Daybreaker's signature morning dance party: live DJ and musicians, no alcohol, free coffee, real connection. Come solo or with your crew, leave with new friends.\",Confirmed,Y,\nSaturday,2027-03-20,12:00 PM,3:00 PM,The Grove,Lunch & Connect,Connect,,\"Lunch, vendor activations, lounges, biohacking, spa.\",Confirmed,Y,\nSaturday,2027-03-20,12:30 PM,2:00 PM,Amphitheater Stage,Keynote & Panel: Consciousness in AI,Panel,TBD,\"Builders, researchers and contemplatives on what it means to build conscious machines, and to stay conscious while we do. Leads straight into the ceremony.\",Proposed,Y,Keynote (~20 min) then moderated panel. Moderator + 3 to 4 panelists TBD. Ends an hour before the 3 PM ceremony\nSaturday,2027-03-20,3:00 PM,5:30 PM,Ceremony Garden,Illumination of the AI Systems,Ceremony,,\"Afternoon ceremony, with the day's deep transformational practice woven in.\",Confirmed,Y,Expanded by 30 min; the daily transformational exercise now lives inside the ceremony\nSaturday,2027-03-20,5:30 PM,8:00 PM,The Grove,Connect & dinner,Connect,,\"Dinner, vendor activations, lounges.\",Confirmed,Y,\nSaturday,2027-03-20,7:00 PM,9:30 PM,Amphitheater Stage,Opening acts,Music,TBD,,Proposed,Y,Split of the 7 to 12 block is a placeholder\nSaturday,2027-03-20,9:30 PM,12:00 AM,Amphitheater Stage,Poranguí,Music,Poranguí,Saturday headliner.,Confirmed,Y,Set time TBC\nSunday,2027-03-21,,,,Consciousness in Financial & Political Systems,Theme,,,Confirmed,Y,Day theme\nSunday,2027-03-21,9:00 AM,10:00 AM,Amphitheater Stage,Morning Yoga,Movement,Black Swan Yoga,\"An hour of yoga on the river to open the day, led by Austin's Black Swan Yoga.\",Confirmed,Y,Teacher TBD\nSunday,2027-03-21,10:00 AM,12:00 PM,Amphitheater Stage,Bass Church,Music,Bass Church,,Confirmed,Y,End time assumed noon\nSunday,2027-03-21,12:00 PM,3:00 PM,The Grove,Lunch & Connect,Connect,,\"Lunch, vendor activations, lounges, biohacking, spa.\",Confirmed,Y,\nSunday,2027-03-21,12:30 PM,2:00 PM,Amphitheater Stage,Keynote & Panel: Consciousness in Financial & Political Systems,Panel,TBD,\"Founders, funds and organizers on money, governance and the systems we are ready to redesign. Leads straight into the ceremony.\",Proposed,Y,Keynote (~20 min) then moderated panel. Moderator + 3 to 4 panelists TBD. Ends an hour before the 3 PM ceremony\nSunday,2027-03-21,3:00 PM,5:30 PM,Ceremony Garden,Ceremony : Illumination of the Political Systems,Ceremony,,\"Afternoon ceremony, with the day's deep transformational practice woven in.\",Confirmed,Y,Expanded by 30 min; the daily transformational exercise now lives inside the ceremony\nSunday,2027-03-21,5:30 PM,8:00 PM,The Grove,Connect & dinner,Connect,,\"Dinner, vendor activations, lounges.\",Confirmed,Y,\nSunday,2027-03-21,7:00 PM,8:30 PM,Amphitheater Stage,Snow Raven,Music,Snow Raven,,Confirmed,Y,90-minute set. 30 min changeover before MOSE\nSunday,2027-03-21,9:00 PM,11:00 PM,Amphitheater Stage,MOSE,Music,MOSE,Sunday headliner.,Confirmed,Y,Set time TBC\nMonday,2027-03-22,,,,The Consciousness of Water,Theme,,,Confirmed,Y,Day theme\nMonday,2027-03-22,,,,World Water Day,Anchor,,,Confirmed,Y,Called out; ceremony at 6 PM\nMonday,2027-03-22,5:44 AM,,,Full Moon,Anchor,,Full moon peaks before dawn.,Confirmed,Y,\"Called out, not scheduled around\"\nMonday,2027-03-22,10:00 AM,6:00 PM,The Grove,\"Chill, Eat & Connect\",Connect,,\"A slow day in the Grove. Eat, rest, integrate, connect.\",Confirmed,Y,\nMonday,2027-03-22,3:15 PM,4:45 PM,Amphitheater Stage,Keynote & Panel: The Consciousness of Water,Panel,TBD,\"Scientists, water protectors and river stewards on the intelligence of water, on World Water Day, beside the Colorado. Leads straight into the water ceremony.\",Proposed,Y,Keynote (~20 min) then moderated panel. Moderator + 3 to 4 panelists TBD. Ends 75 min before the 6 PM ceremony\nMonday,2027-03-22,6:00 PM,8:00 PM,Ceremony Garden,Ceremony : World Water Day ,Ceremony,,\"Closing ceremony on the river for World Water Day, with the day's deep transformational practice woven in.\",Confirmed,Y,Expanded by 30 min; the daily transformational exercise now lives inside the ceremony\nMonday,2027-03-22,8:00 PM,10:30 PM,Amphitheater Stage,Closing dance set,Music,TBD,,Confirmed,Y,Artist TBD\nMonday,2027-03-22,12:00 PM,2:00 PM,The Grove,Water Cleansing for the Body,Workshop,TBD,\"A two-hour guided water cleanse for the body at the Bath House on World Water Day: cold plunge, hot soak, breath and rest by the river.\",Proposed,Y,Featured Monday session; bath house partner and facilitator TBD\nFriday,2027-03-19,3:00 PM,6:00 PM,The Grove,The Bath House: Water Cleansing (drop-in),Connect,,Water cleansing for the body is open at the Bath House in the Grove all festival long. Drop in any time it's open.,Proposed,Y,Bath house hours TBC with vendor\nSaturday,2027-03-20,12:00 PM,8:00 PM,The Grove,The Bath House: Water Cleansing (drop-in),Connect,,Water cleansing for the body is open at the Bath House in the Grove all festival long. Drop in any time it's open.,Proposed,Y,Bath house hours TBC with vendor\nSunday,2027-03-21,12:00 PM,8:00 PM,The Grove,The Bath House: Water Cleansing (drop-in),Connect,,Water cleansing for the body is open at the Bath House in the Grove all festival long. Drop in any time it's open.,Proposed,Y,Bath house hours TBC with vendor\nMonday,2027-03-22,10:00 AM,6:00 PM,The Grove,The Bath House: Water Cleansing (drop-in),Connect,,Water cleansing for the body is open at the Bath House in the Grove all festival long. Drop in any time it's open.,Proposed,Y,Bath house hours TBC with vendor\n";
+const SNAPSHOT_DATE = "September 18, 2026";
+
+function parseCSV(text){
+  const rows=[];let row=[],cell='',q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){ if(c=='"'){ if(text[i+1]=='"'){cell+='"';i++;} else q=false; } else cell+=c; }
+    else if(c=='"') q=true;
+    else if(c==','){row.push(cell);cell='';}
+    else if(c=='\n'||c=='\r'){ if(c=='\r'&&text[i+1]=='\n') i++; row.push(cell);rows.push(row);row=[];cell=''; }
+    else cell+=c; }
+  if(cell!==''||row.length){row.push(cell);rows.push(row);}
+  const head=rows.shift().map(h=>h.trim().toLowerCase());
+  const key=n=>head.findIndex(h=>h.startsWith(n));
+  const K={day:key('day'),date:key('date'),start:key('start'),end:key('end'),stage:key('stage'),title:key('title'),type:key('type'),who:key('lead'),desc:key('description'),status:key('status'),show:key('show')};
+  return rows.filter(r=>r.some(x=>x&&x.trim())).map(r=>{const g=i=>i<0?'':(r[i]||'').trim();return{day:g(K.day),date:g(K.date),start:g(K.start),end:g(K.end),stage:g(K.stage),title:g(K.title),type:g(K.type),who:g(K.who),desc:g(K.desc),status:g(K.status),show:g(K.show)};});
+}
+function mins(t){ if(!t) return null; const m=t.match(/(\d{1,2})(?::(\d{2}))?(?::\d{2})?\s*([AP]M)?/i); if(!m) return null;
+  let h=+m[1],mi=+(m[2]||0); const ap=(m[3]||'').toUpperCase(); if(ap=='PM'&&h<12)h+=12; if(ap=='AM'&&h==12)h=0;
+  let v=h*60+mi; if(v<4*60) v+=24*60; /* after-midnight slots belong to the previous day */ return v; }
+function fmt(t){ if(!t) return ''; const m=mins(t); if(m==null) return t; let h=Math.floor((m%1440)/60),mi=m%60; const ap=h>=12?'PM':'AM'; h=h%12||12; return h+(mi?':'+String(mi).padStart(2,'0'):'')+' '+ap; }
+function niceDate(iso){ const d=new Date(iso+'T12:00:00'); return isNaN(d)?iso:d.toLocaleDateString('en-US',{month:'long',day:'numeric'}); }
+function stageClass(s){ s=(s||'').toLowerCase(); if(s.startsWith('amph'))return'stage-amph'; if(s.startsWith('cer'))return'stage-cer'; if(s.includes('grove'))return'stage-grove'; return'stage-none'; }
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function render(rows,live){
+  rows=rows.filter(r=>r.title&&(r.show||'y').toUpperCase()!=='N'&&(r.status||'').toLowerCase()!=='cancelled');
+  const order=['Friday','Saturday','Sunday','Monday'];
+  const days=[...new Set(rows.map(r=>r.day))].sort((a,b)=>{const ia=order.indexOf(a),ib=order.indexOf(b);return (ia<0?9:ia)-(ib<0?9:ib);});
+  const nav=document.getElementById('daynav'),main=document.getElementById('days'); nav.innerHTML='';main.innerHTML='';
+  for(const d of days){
+    const evs=rows.filter(r=>r.day===d);
+    const date=(evs.find(e=>e.date)||{}).date;
+    const anchors=evs.filter(e=>e.type.toLowerCase()==='anchor');
+    const theme=evs.find(e=>e.type.toLowerCase()==='theme');
+    const items=evs.filter(e=>!['anchor','theme'].includes(e.type.toLowerCase())).sort((a,b)=>(mins(a.start)??0)-(mins(b.start)??0));
+    const id='day-'+d.toLowerCase();
+    nav.insertAdjacentHTML('beforeend',`<a href="#${id}">${esc(d)}</a>`);
+    let h=`<section class="day" id="${id}"><div class="dayhead"><h2>${esc(d)}</h2><span class="date">${esc(niceDate(date))}</span></div>`;
+    if(theme) h+=`<div class="theme">${esc(theme.title)}</div>`;
+    if(anchors.length) h+=`<div class="anchors">`+anchors.map(a=>`<span class="anchor"><b>${esc(a.title)}</b>${a.start?' · '+esc(fmt(a.start)):''}${a.desc?' · '+esc(a.desc):''}</span>`).join('')+`</div>`;
+    h+=items.map(e=>{const t=e.type.toLowerCase();
+      return `<article class="ev ${t}"><div class="time"><b>${esc(fmt(e.start))}</b>${e.end?'to '+esc(fmt(e.end)):''}</div>
+      <div class="body"><h3>${esc(t==='panel'?e.title.replace(/^(Keynote & )?Panel:\s*/i,''):e.title)}</h3>${e.who&&e.who!=='TBD'&&e.who!==e.title?`<div class="who">${esc(e.who)}</div>`:''}${e.desc?`<p>${esc(e.desc)}</p>`:''}
+      <div class="chips"><span class="chip ${stageClass(e.stage)}">${esc(e.stage)}</span>${e.type?`<span class="chip type">${esc(e.type)}</span>`:''}${(e.status||'').toLowerCase()==='proposed'?`<span class="chip proposed">Proposed</span>`:''}</div></div></article>`;}).join('');
+    h+=`</section>`; main.insertAdjacentHTML('beforeend',h);
+  }
+  document.getElementById('updated').textContent = live ? 'Live from the master schedule · loaded '+new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : 'Showing the schedule as of '+SNAPSHOT_DATE;
+}
+render(parseCSV(SNAPSHOT),false);
+fetch(SHEET_CSV_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.text();}).then(t=>{const rows=parseCSV(t); if(rows.length) render(rows,true);}).catch(()=>{});
+</script>
+</body>
+</html>
