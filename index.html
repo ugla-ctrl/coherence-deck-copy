@@ -70,6 +70,12 @@
   @media (max-width:920px),(orientation:portrait) and (max-width:1200px){br.desk-br{display:none}br.mob-br{display:block}}
 
   .slide.light{background:var(--cream);color:var(--ink)}
+  .split{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4cqw,64px);align-items:center;width:100%}
+  .split .side{margin:0;position:relative;height:clamp(240px,62cqh,560px);border-radius:18px;overflow:hidden;box-shadow:0 18px 50px rgba(23,16,9,.22)}
+  .split .side img{width:100%;height:100%;object-fit:cover;display:block}
+  .split .side figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,248,238,.78);background:linear-gradient(180deg,rgba(23,16,9,0),rgba(23,16,9,.7))}
+  @media (max-width:920px),(orientation:portrait) and (max-width:1200px){.split{grid-template-columns:1fr}.split .side{height:clamp(180px,32cqh,300px)}}
+
   .slide.photo .bg{position:absolute;inset:0;z-index:0;background:url('media/hero-bg.png') center/cover no-repeat}
   .slide.photo .shade{position:absolute;inset:0;z-index:1;
     background:linear-gradient(180deg,rgba(23,16,9,.5) 0%,rgba(23,16,9,.28) 40%,rgba(23,16,9,.72) 100%)}
@@ -437,13 +443,18 @@
   <!-- 06 · market whitespace -->
   <section class="slide light">
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
-    <div class="st eyebrow">The Question</div>
-    <h2 class="st">What will humans do when goods and services are nearly free?</h2>
-    <p class="st sub">AI is accelerating the evolution of society, and human culture will have to adapt. We believe it can be the best thing that ever happens to humanity, if we decide what it is for. <strong>More time with family. More creativity. Deeper human connection, more celebration, play, and time in nature.</strong> COHERENCE is where we predict what is coming and start building the places people will land.</p>
-    <div class="st statrow">
-      <div class="stat"><div class="n">Predict</div><div class="l">How we will spend our time after AI</div></div>
-      <div class="stat"><div class="n">Build</div><div class="l">What we create now so people can land</div></div>
-      <div class="stat"><div class="n">Infuse</div><div class="l">Consciousness into AI, money, and politics</div></div>
+    <div class="split">
+      <div>
+        <div class="st eyebrow">The Question</div>
+        <h2 class="st">What will humans do when goods and services are nearly free?</h2>
+        <p class="st sub">AI is accelerating the evolution of society, and human culture will have to adapt. We believe it can be the best thing that ever happens to humanity, if we decide what it is for. <strong>More time with family. More creativity. Deeper human connection, more celebration, play, and time in nature.</strong> COHERENCE is where we predict what is coming and start building the places people will land.</p>
+        <div class="st statrow" style="flex-wrap:nowrap;gap:clamp(16px,2.6cqw,40px)">
+          <div class="stat" style="flex:1"><div class="n">Predict</div><div class="l">How we will spend our time after AI</div></div>
+          <div class="stat" style="flex:1"><div class="n">Build</div><div class="l">What we create now so people can land</div></div>
+          <div class="stat" style="flex:1"><div class="n">Infuse</div><div class="l">Consciousness into AI, money, and politics</div></div>
+        </div>
+      </div>
+      <figure class="st side"><img src="media/community-dusk-crowd.jpg" alt="Friends dancing together at dusk, Iceland Eclipse 2026" style="object-position:50% 45%"/><figcaption>Iceland Eclipse 2026</figcaption></figure>
     </div>
     <div class="sec">05 · Market</div><div class="fd">Event Information</div>
   </section>
@@ -471,21 +482,21 @@
   </section>
 
   <!-- 08 · access -->
-  <section class="slide photo">
-    <div class="bg" style="background-image:url('media/austin-aerial.jpg');background-position:center 40%"></div>
-    <div class="shade" style="background:linear-gradient(90deg,rgba(10,14,20,.9) 0%,rgba(10,14,20,.66) 50%,rgba(10,14,20,.22) 100%)"></div>
+  <section class="slide light">
     <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
-    <div style="max-width:62%">
-      <div class="st eyebrow">Access</div>
-      <h2 class="st">A destination gathering without the journey.</h2>
-      <p class="st sub">Most transformational gatherings ask for two travel days before anyone arrives. Carson Creek Ranch is <strong>15 minutes from downtown Austin and 5 minutes from Austin-Bergstrom International airport</strong>, so a guest can land and be on the land the same hour. Lower friction, higher conversion, national reach.</p>
-      <div class="st statrow" style="flex-wrap:nowrap;gap:clamp(18px,3cqw,44px);margin-top:clamp(18px,3.5cqh,36px)">
-        <div class="stat" style="flex:1"><div class="n">0</div><div class="l">Travel days. Fly in the morning, ceremony that afternoon</div></div>
-        <div class="stat" style="flex:1"><div class="n">Nonstop</div><div class="l">Direct flights from both coasts, most under 4 hours</div></div>
-        <div class="stat" style="flex:1"><div class="n">Austin</div><div class="l">The conscious-builder hub itself</div></div>
+    <div class="split">
+      <div>
+        <div class="st eyebrow">Access</div>
+        <h2 class="st">A destination gathering without the journey.</h2>
+        <p class="st sub">Most transformational gatherings ask for two travel days before anyone arrives. Carson Creek Ranch is <strong>15 minutes from downtown Austin and 5 minutes from Austin-Bergstrom International airport</strong>, so a guest can land and be on the land the same hour. Lower friction, higher conversion, national reach.</p>
+        <div class="st statrow" style="flex-wrap:nowrap;gap:clamp(16px,2.6cqw,40px)">
+          <div class="stat" style="flex:1"><div class="n">0</div><div class="l">Travel days. Fly in the morning, ceremony that afternoon</div></div>
+          <div class="stat" style="flex:1"><div class="n">Nonstop</div><div class="l">Direct flights from both coasts, most under 4 hours</div></div>
+          <div class="stat" style="flex:1"><div class="n">Austin</div><div class="l">The conscious-builder hub itself</div></div>
+        </div>
       </div>
+      <figure class="st side"><img src="media/austin-skyline.jpg" alt="Downtown Austin skyline over the Colorado River"/><figcaption>Austin skyline over the Colorado River · photo Tony Webster, CC BY 2.0</figcaption></figure>
     </div>
-    <div class="credit">Austin from the southeast approach · photo formulanone, CC BY-SA 2.0</div>
     <div class="sec">07 · Access</div><div class="fd">Event Information</div>
   </section>
 
@@ -515,48 +526,6 @@
     <div class="sec">08 · Program</div><div class="fd">Event Information</div>
   </section>
 
-  <!-- 09 · programming architecture -->
-  <section class="slide light">
-    <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
-    <div class="st eyebrow">The Lineup</div>
-    <h2 class="st">Three layers, three stages.</h2>
-    <div class="st layers">
-      <div class="layer"><div class="n">3</div><h3>Keynotes &amp; Panels</h3><p>One a day, on the day's theme: consciousness in AI, in financial and political systems, and in water. Built to land concrete ideas, not just talk.</p></div>
-      <div class="layer"><div class="n">4</div><h3>Ceremonies</h3><p>Opening, two Illuminations, and the World Water Day Ceremony, each with the day's deep transformational practice inside it.</p></div>
-      <div class="layer"><div class="n">6+</div><h3>Music</h3><p>AWARË, Daybreaker, Bass Church, Poranguí, Snow Raven, MOSE, and a closing dance under the full moon.</p></div>
-    </div>
-    <div class="st tracks">
-      <div class="track"><span class="dot" style="background:var(--euca)"></span><span class="t">Amphitheater Stage · music, yoga, keynotes</span><span class="c">Stage</span></div>
-      <div class="track"><span class="dot" style="background:var(--clay)"></span><span class="t">Ceremony Garden · ceremony and deep practice</span><span class="c">Garden</span></div>
-      <div class="track"><span class="dot" style="background:var(--olive)"></span><span class="t">The Grove · food, vendors, lounges</span><span class="c">Grove</span></div>
-      <div class="track"><span class="dot" style="background:var(--rose)"></span><span class="t">The Bath House · water cleansing, all four days</span><span class="c">Grove</span></div>
-      <div class="track"><span class="dot" style="background:var(--sage)"></span><span class="t">Biohacking &amp; longevity activations</span><span class="c">Grove</span></div>
-      <div class="track"><span class="dot" style="background:var(--ochre)"></span><span class="t">Morning yoga · Present Practice, Black Swan, Flow</span><span class="c">Daily</span></div>
-    </div>
-    <div class="sec">09 · Lineup</div><div class="fd">Event Information</div>
-  </section>
-
-  <!-- 10 · community engine -->
-  <section class="slide photo">
-    <div class="bg" style="background-image:url('media/community-dusk-crowd.jpg');background-position:50% 50%"></div>
-    <div class="shade" style="background:linear-gradient(180deg,rgba(23,16,9,.80) 0%,rgba(23,16,9,.72) 45%,rgba(23,16,9,.90) 100%)"></div>
-    <div class="chip"><img src="media/logo-symbol.png" alt=""/> COHERENCE</div>
-    <div class="st eyebrow">The Outcome</div>
-    <h2 class="st">We leave with a plan,<br>and with each other.</h2>
-    <div class="st arc">
-      <div class="phase"><div class="pn">Ideas</div><h3>Concrete, not abstract</h3>
-        <ul><li>Each keynote &amp; panel ends with proposals, not applause</li><li>What people will do with their time after AI</li><li>What we can build now so they have a place to land</li></ul></div>
-      <div class="phase"><div class="pn">Systems</div><h3>Consciousness inside the machine</h3>
-        <ul><li>An honest look at infusing AI with enlightened principles</li><li>Financial and political systems redesigned in the open</li><li>Water as the model for how systems should flow</li></ul></div>
-      <div class="phase"><div class="pn">People</div><h3>Partners for life</h3>
-        <ul><li>Business partners, creative partners, life partners</li><li>Meals, ceremony, and the Bath House do the introductions</li><li>A community that keeps building after Monday</li></ul></div>
-    </div>
-    <div class="credit">Ceremony at Iceland Eclipse 2026</div>
-    <div class="sec">10 · Community</div><div class="fd">Event Information</div>
-  </section>
-
-
-
   <!-- 14 · lineage -->
   <section class="slide photo">
     <div class="bg" style="background-image:url('media/ceremony-aerial.jpg');background-position:50% 38%"></div>
@@ -568,7 +537,7 @@
     <div class="st statrow">
       <div class="stat"><div class="n">38,000</div><div class="l">Texas Eclipse attendees · 2024</div></div>
       <div class="stat"><div class="n">Delivered</div><div class="l">Iceland Eclipse · August 2026</div></div>
-      <div class="stat"><div class="n">50K+</div><div class="l">Global community · 70+ countries</div></div>
+      <div class="stat"><div class="n">2.8M+</div><div class="l">Global community · 70+ countries</div></div>
     </div>
     <div class="st cerestrip">
       <figure><img src="media/ceremony-water-blessing.jpg" alt="Water blessing ceremony at Iceland Eclipse 2026" loading="lazy" /></figure>
