@@ -1,4 +1,4 @@
-# Coherence Gathering — Investment Deck
+# Coherence · Event Information Deck
 
 Hand-coded HTML/CSS investor deck for the COHERENCE Gathering, in the same family as the [Midnight Sun deck](https://github.com/ugla-ctrl/midnight-sun-deck) and [IMXP deck](https://github.com/ugla-ctrl/imxp-deck-v3): a floating 16:9 stage on GitHub Pages, keyboard/click/swipe/wheel nav, dot rail, hash deep links, container-query type scaling.
 
@@ -6,18 +6,15 @@ Everything lives in `index.html` (self-contained, Google Fonts only). Source mat
 
 ## Design
 
-**Brand source of truth is the live site (coherencegathering.com), NOT `sources/coherence-brand-guide.md`** — that April doc (teal/indigo/mandala/Montserrat) is stale; the shipped brand is warm-earth. Extracted from the live site 2026-08-28:
+**Brand source of truth: Patrick Kronfli's Coherence Brand Kit v2 (Oct 14, 2026)** and the Coherence brand guide built from it. This replaces the earlier warm-earth (Fraunces / Work Sans / copper wave mark) look.
 
-- Colors: cream `#f6ecde` · ink `#201712` · copper `#ae7853` · taupe `#cfc2b3`
-- Fonts: **Fraunces** (wordmark tight-tracked, italic for taglines/poetic lines) + **Work Sans** (body; letterspaced uppercase eyebrows/buttons)
-- Tagline: "Connected, in spirit." · descriptor: "A 4-day gathering for designers of the New Earth…" (both verbatim from the site)
-- Assets in `media/`: `logo-symbol.png` (the copper wave mark, white keyed out) and `hero-bg.png` (the site's hero photo) — pulled from the site itself
-- Cover and close are full-bleed hero-photo slides mirroring the site; interior alternates warm-dark and cream
-- Signature move: concentric copper rings echoing the wave mark sit behind the deck and rotate/expand as the viewer advances (`#mandala`, driven from `go()`)
-- Email gate mirrors the site's "Request invitation" flow: cream card, italic Fraunces heading, ink letterspaced button
-- House style: no em dashes in copy
+- Colors: Cream `#F4EEE3` · Ink `#15212B` · muted `#5A636C` · line `#D9D1C3` · gold `#E8B547` (text only on Ink) · clay `#9C5532` (one highlight per slide)
+- Type: **Jost** only (Medium titles, Regular body, Medium caps tracked 14% for labels)
+- Logo: final lockup (wordmark over the sigil, triangle under the E–R gap of HERE) on the cover, close and gate; wordmark as the running header on every interior slide. Files in `media/coherence-*.svg`, never retyped.
+- Name: COHERENCE in capitals only as the wordmark; "Coherence" in all running text.
+- House style: no em dashes in copy.
 
-16 slides: cover · thesis · concept · pillars · audience · market · place · program arc · lineup · community engine · business model · financials · moats · lineage (IMXP) · roadmap · close.
+Layout is the deck's own (floating stage, full-bleed photo slides, cream/ink alternation); only the brand changed. 11 slides: cover · thesis · concept · pillars · audience · question · place · access · four days · lineage · close. The counter is computed from the slide count.
 
 ## Email gate
 
