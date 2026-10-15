@@ -88,8 +88,13 @@
   /* ---- slide chrome ---- */
   .chip{position:absolute;top:4.2cqh;left:var(--edge);z-index:3;display:flex;align-items:center;gap:.7em;
     font-weight:500;font-size:.92cqw;letter-spacing:.14em;color:var(--cream-dim)}
-  .chip img{height:auto;width:10.5cqw;display:block}
-  .slide.light .chip img{content:url('media/coherence-wordmark-ink.svg')}
+  .chip img{height:auto;display:block}
+  .chip{gap:.9cqw}
+  .chip .chip-sigil{width:4.2cqw}
+  .slide.concept{padding-top:11cqh}
+  .chip .chip-word{width:10.5cqw}
+  .slide.light .chip .chip-word{content:url('media/coherence-wordmark-ink.svg')}
+  .slide.light .chip .chip-sigil{content:url('media/coherence-sigil-ink.svg')}
   .slide.light .chip{color:var(--ink-dim)}
   .fd{position:absolute;bottom:3.8cqh;right:var(--edge);z-index:3;
     font-weight:500;font-size:.82cqw;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-faint)}
@@ -132,6 +137,11 @@
 
   /* ---- components ---- */
   .statrow{display:flex;gap:4.4cqw;margin-top:5cqh;flex-wrap:wrap}
+  .whynow{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6cqw;margin-top:4.4cqh}
+  .whynow>div{border-top:2px solid var(--copper-deep);padding-top:1.8cqh}
+  .whynow h3{font-weight:500;font-size:1.5cqw;line-height:1.25;color:var(--ink);margin-bottom:1cqh}
+  .whynow p{font-size:1.08cqw;line-height:1.55;color:var(--ink-dim)}
+  .whynow strong{color:var(--ink)}
   .stat .n{font-family:var(--serif);font-weight:500;font-size:3.2cqw;letter-spacing:-.02em;color:var(--copper-bright)}
   .slide.light .stat .n{color:var(--copper-deep)}
   .slide.photo .stat .n{color:var(--cream)}
@@ -239,7 +249,7 @@
   .cover-tag{font-size:2.1cqw;line-height:1.3}
   .cover .cover-desc{margin-top:1.6cqh;max-width:60ch;color:var(--cream)}
   .cover-word-img{width:62cqw;height:auto;display:block;filter:drop-shadow(0 2px 14px rgba(0,0,0,.35))}
-  .cover-lock{width:min(44cqw,640px);height:auto;display:block;filter:drop-shadow(0 2px 14px rgba(0,0,0,.35))}
+  .cover-lock{width:40cqw;height:auto;display:block;filter:drop-shadow(0 2px 14px rgba(0,0,0,.35))}
   .cover-rule{position:relative;height:1px;background:rgba(244,238,227,.32);margin:4cqh calc(-1*var(--edge)) 3.4cqh}
   .cover-rule span{position:absolute;left:var(--edge);top:-4px;width:9px;height:9px;border-radius:50%;background:var(--copper-bright)}
   .cover-foot{position:relative;z-index:3;margin-top:6cqh;display:flex;justify-content:space-between;
@@ -272,12 +282,81 @@
     background:rgba(13,21,28,.55);color:var(--copper-bright);font-size:1.05rem;line-height:1;
     display:flex;align-items:center;justify-content:center;transition:all .25s}
   .arrows button:hover{background:var(--copper);color:var(--cream);border-color:var(--copper)}
-  /* ---- compact mode: phones + tablets in portrait ----
-     the floating 16:9 stage only works in landscape-ish viewports; below this
-     breakpoint (or in portrait) the stage becomes a full-bleed, per-slide
-     scrollable panel instead, so content reflows rather than shrinking to
-     an unreadable letterbox. container queries still drive type/spacing
-     since #stage keeps a definite height (100dvh), just not a 16:9 one. */
+  /* ---- phone layout: touch phones held upright only ----
+     desktop, tablets and narrow desktop windows keep the landscape stage.
+     on a phone the stage fills the screen, each slide stacks its content
+     and scrolls on its own, and type is set in px so it stays readable. */
+  @media (pointer:coarse) and (max-width:600px) and (orientation:portrait){
+    #wrap{padding:0}
+    #stage{width:100vw;height:100vh;height:100dvh;aspect-ratio:auto;border-radius:0;box-shadow:none;container-type:normal}
+    :root{--edge:22px}
+    .slide,.slide.concept{justify-content:flex-start;padding:70px 22px 92px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+    .slide.photo .bg,.slide.photo .shade{position:fixed}
+    .chip{top:22px}
+    .chip{gap:9px}
+    .chip .chip-sigil{width:46px}
+    .chip .chip-word{width:104px}
+    .coverlogo{top:20px;width:58px}
+    .fd,.sec,.split-v .sec-top{display:none}
+    .credit{position:static;transform:none;white-space:normal;margin-top:22px;font-size:10px;line-height:1.5;letter-spacing:.06em;color:rgba(244,238,227,.5)}
+    .slide.light .credit{color:var(--ink-dim)!important}
+    .eyebrow{font-size:11px;margin-bottom:12px}
+    h2{font-size:30px!important;line-height:1.14;max-width:none!important;white-space:normal!important}
+    .poem{font-size:21px!important;max-width:none}
+    .sub{font-size:16px!important;line-height:1.55;max-width:none;margin-top:14px}
+    p{font-size:15px;max-width:none}
+    .tagline{font-size:19px}
+    .glass{padding:16px 18px;max-width:none!important;display:block!important}
+    .glass.tight{padding:14px 16px}
+    .slide>div[style*="max-width:58%"]{max-width:none!important}
+    /* grids stack */
+    .split,.whynow,.pillars,.cols3,.cols4,.days,.layers,.arc,.vs,.tracks{grid-template-columns:1fr!important;gap:18px}
+    .split .side{height:230px!important;margin-top:18px}
+    .split .side figcaption{font-size:9px}
+    .whynow,.pillars,.days,.vs{margin-top:24px}
+    .whynow h3{font-size:19px}.whynow p{font-size:15px}
+    .pillar{padding:16px}.pillar .ring{width:38px;height:38px;margin-bottom:8px}
+    .pillar h3{font-size:21px}.pillar p{font-size:15px}
+    .col h3{font-size:12px}.col li{font-size:15px}
+    .meets{font-size:18px;margin-top:20px}
+    .vs .side{padding:16px}.vs h3{font-size:12px}.vs li{font-size:15px}
+    .day{padding-left:14px}.day .dn{font-size:11px;letter-spacing:.2em}
+    .day h3{font-size:23px}.day p{font-size:15px}
+    .blist li{font-size:15px}
+    .statrow{flex-wrap:wrap!important;gap:18px 28px!important;margin-top:20px}
+    .stat .n{font-size:30px}.stat .l{font-size:10px;letter-spacing:.14em}
+    .cerestrip{gap:8px}
+    /* cover */
+    .cover{justify-content:flex-end;padding-bottom:40px}
+    .cover-lock{width:86%}
+    .cover-date{font-size:28px;margin-top:22px}
+    .cover-place{font-size:12px;letter-spacing:.12em}
+    .cover-rule{margin:22px -22px 20px}
+    .cover-tag{font-size:19px}
+    .cover-foot{margin-top:28px;font-size:10px;gap:12px;letter-spacing:.14em}
+    /* thesis: photo on top, copy below */
+    .slide.split-v{padding:0}
+    .split-v .top{height:auto;min-height:62%;padding:90px 22px 26px}
+    .split-v .bottom{display:block;padding:26px 22px 96px}
+    .split-v .bottom .dot{left:28px}
+    .split-v .aside{margin-top:18px}
+    .split-v .aside .tagline{font-size:19px}
+    .split-v .cap-s{font-size:11px}
+    /* close */
+    .close-lock{width:78vw}
+    .contact{font-size:16px;margin-top:26px}
+    .center{justify-content:center}
+    /* nav */
+    #ctr{left:16px;bottom:22px}
+    .arrows{right:14px;bottom:14px}
+    .arrows button{width:42px;height:42px}
+    #dots{display:none}
+    #wrap::after{content:'';position:fixed;left:0;right:0;bottom:0;height:76px;z-index:19;pointer-events:none;
+      background:linear-gradient(180deg,rgba(13,21,28,0) 0%,rgba(13,21,28,.86) 55%,rgba(13,21,28,.94) 100%)}
+    .cover{padding-bottom:92px}
+    p,.sub,li,.meets,.tagline{text-wrap:pretty}
+    .statrow{display:grid!important;grid-template-columns:1fr 1fr;gap:18px 20px!important}
+  }
   /* ---- email gate: styled after coherencegathering.com ---- */
   #gate{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
     background:url('media/cover-crowd.jpg') center/cover no-repeat;transition:opacity .5s ease,visibility .5s}
@@ -311,8 +390,7 @@
   <section class="slide photo cover active">
     <div class="bg" style="background-image:url('media/cover-crowd.jpg');background-position:50% 35%"></div>
     <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.35) 0%,rgba(13,21,28,.62) 45%,rgba(13,21,28,.88) 100%)"></div>
-    <img class="coverlogo" src="media/coherence-sigil-cream.svg" alt="" />
-    <img class="st cover-word-img" src="media/coherence-wordmark-cream.svg" alt="Coherence" />
+    <img class="st cover-lock" src="media/coherence-lockup-cream.svg" alt="Coherence" />
     <div class="st cover-date">March 19 to 22, 2027</div>
     <div class="st cover-place">Carson Creek Ranch · Austin, Texas</div>
     <div class="st cover-rule"><span></span></div>
@@ -326,7 +404,7 @@
     <div class="top">
       <div class="bg" style="background-image:url('media/ceremony-heart-meditation.jpg');background-position:50% 22%"></div>
       <div class="shade" style="background:linear-gradient(90deg,rgba(13,21,28,.82) 0%,rgba(13,21,28,.5) 55%,rgba(13,21,28,.15) 100%)"></div>
-      <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+      <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
       <div class="sec-top">Event Information · 02</div>
       <div class="top-copy">
         <div class="st eyebrow">The Thesis</div>
@@ -341,8 +419,8 @@
   </section>
 
   <!-- 03 · what is coherence -->
-  <section class="slide light">
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+  <section class="slide light concept">
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="split" style="align-items:stretch">
       <div>
         <div class="st eyebrow">What It Is</div>
@@ -378,7 +456,7 @@
   <section class="slide photo">
     <div class="bg" style="background-image:url('media/ceremony-circle-tent-v2.jpg');background-position:50% 45%"></div>
     <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.74) 0%,rgba(13,21,28,.58) 45%,rgba(13,21,28,.84) 100%)"></div>
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="st eyebrow">The Experience Arc</div>
     <h2 class="st">Four movements, every day.</h2>
     <div class="st pillars">
@@ -407,7 +485,7 @@
   <section class="slide photo">
     <div class="bg" style="background-image:url('media/ceremony-garden-blessing.jpg');background-position:center"></div>
     <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.78) 0%,rgba(13,21,28,.66) 45%,rgba(13,21,28,.86) 100%)"></div>
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="st eyebrow">The Audience</div>
     <h2 class="st" style="max-width:26ch">The world's top optimists, in one place.</h2>
     <div class="glass">
@@ -429,10 +507,16 @@
 
   <!-- 06 · market whitespace -->
   <section class="slide light">
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="st eyebrow">The Question</div>
     <h2 class="st" style="max-width:32ch">What will humans do when goods and services are nearly free?</h2>
     <p class="st sub">AI is accelerating the evolution of society, and human culture will have to adapt. We believe it can be the best thing that ever happens to humanity, if we decide what it is for. <strong>More time with family. More creativity. Deeper human connection, more celebration, play, and time in nature.</strong> Coherence is where we predict what is coming and start building the places people will land.</p>
+    <div class="st whynow">
+      <div><h3>New money, seeking meaning</h3><p>Austin startups raised a record <strong>$7.19B</strong> in 2025, led by AI. The people building the post-AI economy live here, and they are looking for more than things.</p></div>
+      <div><h3>Spending shifts to wellbeing</h3><p>The global wellness economy grew <strong>7.9%</strong> in 2024, and wellness travel is outpacing travel overall. Gatherings that combine the two are where it lands.</p></div>
+      <div><h3>An open category</h3><p>Festivals sell entertainment and conferences sell networking. No one in Austin yet holds the gathering that does both, with ceremony at the center.</p></div>
+    </div>
+    <div class="credit" style="color:var(--ink-dim)">Sources: Crunchbase · Global Wellness Institute</div>
     <div class="sec">05 · Market</div><div class="fd">Event Information</div>
   </section>
 
@@ -440,7 +524,7 @@
   <section class="slide photo">
     <div class="bg" style="background-image:url('media/venue-river-graded.jpg')"></div>
     <div class="shade" style="background:linear-gradient(90deg,rgba(13,21,28,.86) 0%,rgba(13,21,28,.55) 55%,rgba(13,21,28,.18) 100%)"></div>
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div style="max-width:58%">
       <div class="st eyebrow">The Place</div>
       <h2 class="st">Carson Creek Ranch.</h2>
@@ -460,13 +544,14 @@
 
   <!-- 08 · access -->
   <section class="slide light">
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="split">
       <div>
         <div class="st eyebrow">Access</div>
         <h2 class="st">A destination gathering without the journey.</h2>
         <p class="st sub">Most transformational gatherings ask for two travel days before anyone arrives. Carson Creek Ranch is <strong>15 minutes from downtown Austin and 5 minutes from Austin-Bergstrom International airport</strong>, so a guest can land and be on the land the same hour. Lower friction, higher conversion, national reach.</p>
         <p class="st sub">Zero travel days: fly in the morning, be in ceremony that afternoon. Nonstop flights from both coasts, most under four hours, into the conscious-builder hub itself.</p>
+        <p class="st sub"><strong>SXSW's final weekend.</strong> SXSW runs March 15 to 21, so fans, artists and partners are already in town, and Austin locals get the non-corporate gathering on the river.</p>
       </div>
       <figure class="st side"><img src="media/austin-aerial-drone.jpg" alt="Downtown Austin and the Colorado River from above" style="object-position:22% 45%"/><figcaption>Downtown Austin and the Colorado River from above · photo Quintin Soloviev, CC BY 4.0</figcaption></figure>
     </div>
@@ -477,7 +562,7 @@
   <section class="slide photo">
     <div class="bg" style="background-image:url('media/ceremony-drum.jpg');background-position:50% 40%"></div>
     <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.86) 0%,rgba(13,21,28,.8) 45%,rgba(13,21,28,.92) 100%)"></div>
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="st eyebrow">The Four Days</div>
     <h2 class="st" style="white-space:nowrap;font-size:4.6cqw">One theme a day. One arc across four.</h2>
     <div class="st days">
@@ -490,7 +575,7 @@
       <div class="day"><div class="dn">Monday · Full Moon · World Water Day</div><h3>World Water Day</h3>
         <p>A slow day to foster connection. The Bath House guided inner-water cleanse. Keynote &amp; panel on the technology of water, the Love Water Ceremony, closing dinner and acoustic dance set.</p></div>
     </div>
-    <div class="st eyebrow" style="margin-top:3cqh;margin-bottom:0;color:var(--cream)">Four ceremonies · Three keynote <span class="amp">&amp;</span> panel days · Six headline acts on the river</div>
+    <div class="st eyebrow" style="margin-top:3cqh;margin-bottom:0;color:var(--cream)">Spring Equinox Saturday · Full Moon Monday · Four ceremonies · Three keynote <span class="amp">&amp;</span> panel days · Six headline acts on the river</div>
     <div class="credit">Ceremony at Iceland Eclipse 2026</div>
     <div class="sec">08 · Program</div><div class="fd">Event Information</div>
   </section>
@@ -499,11 +584,12 @@
   <section class="slide photo">
     <div class="bg" style="background-image:url('media/ceremony-aerial.jpg');background-position:50% 38%"></div>
     <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.82) 0%,rgba(13,21,28,.64) 45%,rgba(13,21,28,.88) 100%)"></div>
-    <div class="chip"><img src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
+    <div class="chip"><img class="chip-sigil" src="media/coherence-sigil-cream.svg" alt=""/><img class="chip-word" src="media/coherence-wordmark-cream.svg" alt="Coherence"/></div>
     <div class="st eyebrow">Lineage</div>
     <h2 class="st" style="max-width:none">Produced by <img src="media/imxp-logo-cream.png" alt="IMXP" style="height:.74em;width:auto;display:inline-block;vertical-align:-.02em;margin:0 .12em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))"/> <span class="amp">&amp;</span> <span style="white-space:nowrap"><img src="media/unify-logo.png" alt="" style="height:1em;width:auto;vertical-align:-.14em;margin:0 .26em 0 .1em;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))"/><span style="font-family:'Montserrat','Work Sans',sans-serif;font-weight:700;font-style:normal;letter-spacing:.12em;font-size:.94em;vertical-align:.02em">UNIFY</span>.</span></h2>
-    <div class="glass tight" style="display:inline-block;max-width:84ch;margin-top:1.2cqh"><p class="st sub" style="margin:0;max-width:none;font-size:1.35cqw">Coherence brings together IMXP and UNIFY: collaborators who have already worked side by side at Texas Eclipse and Iceland Eclipse, bringing ceremony to scale across two of the decade’s most significant celestial gatherings. The event playbook, the speaker network, and the community platform already exist.</p></div>
-    <div class="glass tight st statrow" style="margin-top:2cqh;width:100%;box-sizing:border-box">
+    <div class="glass tight" style="display:inline-block;max-width:96ch;margin-top:1.2cqh"><p class="st sub" style="margin:0;max-width:none;font-size:1.35cqw">Coherence brings together IMXP and UNIFY. IMXP's founder built Euphoria on this same land, and the partners have already worked side by side at Texas Eclipse and Iceland Eclipse, bringing ceremony to scale across two of the decade’s most significant celestial gatherings. The event playbook, the speaker network, and the community platform already exist.</p></div>
+    <div class="glass tight st statrow" style="margin-top:2cqh;width:100%;box-sizing:border-box;flex-wrap:nowrap;justify-content:space-between;gap:2cqw">
+      <div class="stat"><div class="n">20K / day</div><div class="l">Euphoria · Carson Creek Ranch</div></div>
       <div class="stat"><div class="n">38,000</div><div class="l">Texas Eclipse attendees · 2024</div></div>
       <div class="stat"><div class="n">Delivered</div><div class="l">Iceland Eclipse · August 2026</div></div>
       <div class="stat"><div class="n">2.8M+</div><div class="l">Global community · 70+ countries</div></div>
@@ -536,18 +622,18 @@
 <div id="dots"></div>
 <div class="arrows"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button></div>
 
-<!-- email gate: styled after coherencegathering.com's invitation flow -->
+<!-- email gate: Coherence brand kit v2 -->
 <div id="gate">
   <div class="card">
     <img class="gmark" src="media/coherence-lockup-ink.svg" alt="Coherence" />
-    <div class="gsub">Event Information</div>
-    <h2>Connected, in spirit.</h2>
-    <p>Enter your details to view the deck.</p>
+    <div class="gsub">March 19 to 22, 2027 · Austin, Texas</div>
+    <h2>Music, Ceremony, &amp; Collective Action</h2>
+    <p>Enter your name and email to view the event information.</p>
     <form id="gateForm" novalidate>
       <input id="gateName" type="text" placeholder="Full name" autocomplete="name" />
       <input id="gateEmail" type="email" placeholder="your@email.com" autocomplete="email" />
       <div class="err" id="gateErr"></div>
-      <button type="submit" id="gateBtn">View Deck</button>
+      <button type="submit" id="gateBtn">View the deck</button>
     </form>
     <div class="fine">Confidential. Not for further distribution.</div>
   </div>
@@ -565,6 +651,7 @@ slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('
 function go(n){
   i=Math.max(0,Math.min(slides.length-1,n));
   slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  slides[i].scrollTop=0;
   [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
   ctr.textContent=pad(i+1)+' / '+pad(slides.length);
   if(location.hash!=='#'+(i+1))history.replaceState(null,'','#'+(i+1));
