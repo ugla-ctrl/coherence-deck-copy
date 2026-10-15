@@ -286,7 +286,7 @@
      desktop, tablets and narrow desktop windows keep the landscape stage.
      on a phone the stage fills the screen, each slide stacks its content
      and scrolls on its own, and type is set in px so it stays readable. */
-  @media (pointer:coarse) and (max-width:600px) and (orientation:portrait){
+  @media (max-width:600px) and (orientation:portrait){
     #wrap{padding:0}
     #stage{width:100vw;height:100vh;height:100dvh;aspect-ratio:auto;border-radius:0;box-shadow:none;container-type:normal}
     :root{--edge:22px}
