@@ -20,9 +20,12 @@
 <link rel="canonical" href="https://info.coherenceatx.com/" />
 <link rel="icon" type="image/png" href="media/favicon-64.png" />
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8C1G1T4LQ8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8C1G1T4LQ8');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Fraunces:ital,wght@0,400;1,400&family=Work+Sans:wght@400;500;600&family=Montserrat:wght@700&display=swap" rel="stylesheet" />
 <style>
   :root{
     /* Coherence brand kit v2 (Patrick Kronfli): Cream + Ink, gold on dark, clay on cream, Jost */
@@ -271,6 +274,35 @@
   .split-v .bottom .sub{margin-top:0;color:var(--ink-dim)}
   .split-v .aside .tagline{color:var(--copper-deep);font-size:1.7cqw;line-height:1.3}
   .split-v .cap-s{margin-top:.8em;font-size:.8cqw;color:var(--ink-dim)}
+
+  /* ---- cover v2 (Patrick, Oct 2026): Austin eyebrow, lockup, Fraunces tagline, three-day block, producer logos ---- */
+  .cover2{padding:0!important;justify-content:space-between;align-items:center;text-align:center}
+  .cover2 .c2-top{padding-top:6.5cqh;display:flex;flex-direction:column;align-items:center}
+  .c2-eyebrow{font-family:'Work Sans',var(--sans);font-weight:500;font-size:1.15cqw;letter-spacing:.32em;text-transform:uppercase;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,.45)}
+  .c2-lock{width:44cqw;height:auto;margin-top:1.8cqh;filter:drop-shadow(0 2px 14px rgba(0,0,0,.4))}
+  .cover2 .c2-bot{padding-bottom:6.5cqh;display:flex;flex-direction:column;align-items:center;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+  .c2-tag{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;font-size:3.1cqw;line-height:1.15;color:var(--cream)}
+  .c2-tag .ampr{font-family:'Fraunces',Georgia,serif;font-style:normal}
+  .c2-rule{width:26cqw;height:1px;background:rgba(232,181,71,.7);margin:2.2cqh 0 2cqh}
+  .c2-month{font-family:'Work Sans',var(--sans);font-weight:500;font-size:1.3cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--copper-bright)}
+  .c2-days{display:flex;margin-top:2cqh}
+  .c2-days>div{padding:0 2.4cqw;display:flex;flex-direction:column;align-items:center}
+  .c2-days>div+div{border-left:1px solid rgba(244,238,227,.4)}
+  .c2-days b{font-family:'Work Sans',var(--sans);font-weight:600;font-size:2.7cqw;line-height:1;color:var(--cream)}
+  .c2-days sup{font-size:.48em;vertical-align:.9em;margin-left:.05em;font-weight:500}
+  .c2-days span{font-family:'Work Sans',var(--sans);font-weight:500;font-size:.74cqw;letter-spacing:.22em;text-transform:uppercase;margin-top:1cqh;color:var(--cream)}
+  .c2-logo-l{position:absolute!important;left:var(--edge);bottom:5.4cqh;height:2.3cqw;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+  .c2-logo-r{position:absolute!important;right:var(--edge);bottom:4.4cqh;height:5.4cqw;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+  .c2-label{position:absolute!important;top:4.4cqh;right:var(--edge);font-weight:500;font-size:.82cqw;letter-spacing:.24em;text-transform:uppercase;color:var(--cream-dim)}
+  .slide.center .tagline{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400;color:var(--cream)}
+  @media (max-width:600px) and (orientation:portrait){
+    .cover2{padding:0!important;justify-content:space-between!important}
+    .cover2 .c2-top{padding-top:64px}.cover2 .c2-bot{padding-bottom:120px}
+    .c2-eyebrow{font-size:12px}.c2-lock{width:86vw;margin-top:12px}
+    .c2-tag{font-size:20px;padding:0 12px;text-wrap:balance}.c2-rule{width:60vw;margin:16px 0 14px}.c2-month{font-size:13px}
+    .c2-days{margin-top:14px}.c2-days>div{padding:0 12px}.c2-days b{font-size:30px}.c2-days span{font-size:9px;letter-spacing:.14em;margin-top:8px}
+    .c2-logo-l{height:22px;left:22px;bottom:80px}.c2-logo-r{height:48px;right:22px;bottom:68px}.c2-label{display:none}
+  }
   /* ---- navigation chrome ---- */
   #ctr{position:fixed;left:clamp(16px,2.4vw,34px);bottom:clamp(14px,2.4vh,26px);z-index:20;
     font-weight:500;font-size:.7rem;letter-spacing:.26em;color:rgba(244,238,227,.4)}
@@ -381,6 +413,29 @@
   #gate button:hover{background:#1E2C38}
   #gate button:disabled{opacity:.6;cursor:default}
   #gate .fine{margin-top:14px;font-size:.68rem;color:rgba(21,33,43,.42)}
+  /* ---- email gate: styled after coherencegathering.com ---- */
+  #gate{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+    background:url('media/cover-crowd.jpg') center/cover no-repeat;transition:opacity .5s ease,visibility .5s}
+  #gate::before{content:'';position:absolute;inset:0;background:rgba(13,21,28,.66);backdrop-filter:blur(3px)}
+  #gate.hide{opacity:0;visibility:hidden;pointer-events:none}
+  #gate .card{position:relative;width:min(92vw,430px);background:var(--cream);
+    border-radius:6px;padding:42px 38px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  #gate .gmark{width:240px;max-width:80%;height:auto;margin:0 auto 14px;display:block}
+  #gate .gname{font-family:var(--sans);font-weight:500;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+  #gate .gsub{font-weight:500;font-size:.66rem;letter-spacing:.14em;color:var(--copper-deep);text-transform:uppercase;margin-bottom:18px}
+  #gate h2{font-family:var(--serif);font-style:normal;font-weight:400;font-size:1.6rem;letter-spacing:-.01em;color:var(--ink);max-width:none;margin-bottom:.35em}
+  #gate p{font-size:.85rem;color:var(--ink-dim);max-width:none;margin-bottom:18px}
+  #gate input{width:100%;margin-bottom:10px;padding:13px 16px;border-radius:3px;font-size:16px;
+    border:1px solid rgba(21,33,43,.22);background:#fff;color:var(--ink);font-family:var(--sans);outline:none}
+  #gate input:focus{border-color:var(--copper)}
+  #gate input::placeholder{color:rgba(21,33,43,.35)}
+  #gate .err{min-height:1.1em;font-size:.74rem;color:#9C5532;margin-bottom:6px}
+  #gate button{width:100%;padding:14px;min-height:44px;border:none;border-radius:3px;cursor:pointer;
+    background:var(--ink);color:var(--cream);font-family:var(--sans);font-weight:500;font-size:.8rem;
+    letter-spacing:.22em;text-transform:uppercase;transition:background .25s}
+  #gate button:hover{background:#1E2C38}
+  #gate button:disabled{opacity:.6;cursor:default}
+  #gate .fine{margin-top:14px;font-size:.68rem;color:rgba(21,33,43,.42)}
 </style>
 </head>
 <body>
@@ -389,16 +444,13 @@
 
   
   <!-- 01 · cover -->
-  <section class="slide photo cover active">
-    <div class="bg" style="background-image:url('media/cover-crowd.jpg');background-position:50% 35%"></div>
-    <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.35) 0%,rgba(13,21,28,.62) 45%,rgba(13,21,28,.88) 100%)"></div>
-    <img class="st cover-lock" src="media/coherence-lockup-cream.svg" alt="Coherence" />
-    <div class="st cover-date">March 20<sup style="font-size:.55em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">th</sup>, 21<sup style="font-size:.55em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">st</sup> &amp; 22<sup style="font-size:.55em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">nd</sup>, 2027</div>
-    <div class="st cover-place">Carson Creek Ranch · Austin, Texas</div>
-    <div class="st cover-rule"><span></span></div>
-    <div class="st tagline cover-tag">Music, Ceremony, &amp; Collective Action</div>
-    <p class="st sub cover-desc">A 3-day gathering for change makers who believe and know we will triumph through our global challenges to create planetary paradise.</p>
-    <div class="cover-foot"><span>Event Information</span><span>On the Colorado River</span></div>
+  <section class="slide photo cover2 active">
+    <div class="bg" style="background-image:url('media/cover-crowd.jpg');background-position:50% 40%;filter:saturate(1.15) contrast(1.04)"></div>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(13,21,28,.55) 0%,rgba(13,21,28,.15) 28%,rgba(13,21,28,.05) 48%,rgba(13,21,28,.3) 64%,rgba(13,21,28,.86) 100%)"></div>
+    <div class="c2-label">Event Information</div>
+    <div class="st c2-top"><div class="c2-eyebrow">Carson Creek Ranch · Austin, TX</div><img class="c2-lock" src="media/coherence-lockup-cream.svg" alt="Coherence" /></div>
+    <div class="st c2-bot"><div class="c2-tag">Music, Ceremony, <span class="ampr">&amp;</span> Collective Action</div><div class="c2-rule"></div><div class="c2-month">March 2027</div><div class="c2-days"><div><b>20<sup>th</sup></b><span>Spring Equinox</span></div><div><b>21<sup>st</sup></b><span>Full Moon</span></div><div><b>22<sup>nd</sup></b><span>World Water Day</span></div></div></div>
+    <img class="c2-logo-l" src="media/imxp-logo-cream.png" alt="IMXP" /><img class="c2-logo-r" src="media/unify-logo.png" alt="UNIFY" />
   </section>
 
   <!-- 02 · thesis -->
@@ -462,8 +514,8 @@
     <div class="st eyebrow">The Three Days</div>
     <h2 class="st" style="white-space:nowrap;font-size:4.6cqw">One theme a day. One arc across three.</h2>
     <div class="st days">
-      <div class="day"><div class="dn">Saturday</div><h3>Spring Equinox</h3><div class="sub">Consciousness after the AI Revolution</div>
-        <p>Dance party at dawn. Keynote &amp; panel on consciousness in AI and the future of humanity after universal abundance. Equinox Orchestra Prayer Ceremony. Headliners in the amphitheater at night.</p></div>
+      <div class="day"><div class="dn">Saturday</div><h3>Spring Equinox</h3><div class="sub">Arrival, Opening <span class="amp">&amp;</span> Consciousness after the AI Revolution</div>
+        <p>Gates open in the morning. Land, settle into the RV Village or your downtown hotel, and find your people in The Grove for the Opening. Keynote &amp; panel on consciousness in AI and the future of humanity after universal abundance. Equinox Orchestra Prayer Ceremony. Headliners in the amphitheater at night.</p></div>
       <div class="day"><div class="dn">Sunday</div><h3>Full Moon</h3><div class="sub">Consciousness in Financial <span class="amp">&amp;</span> Political Systems</div>
         <p>Dance party at dawn. Keynote &amp; panel: founders, funds and organizers of the new systems of finance and governance. Waves of Illumination Ceremony, then headline music on the river.</p></div>
       <div class="day"><div class="dn">Monday</div><h3>World Water Day</h3><div class="sub">The Technology of Water</div>
@@ -639,6 +691,23 @@
   </div>
 </div>
 
+<!-- email gate: Coherence brand kit v2 -->
+<div id="gate">
+  <div class="card">
+    <img class="gmark" src="media/coherence-lockup-ink.svg" alt="Coherence" />
+    <div class="gsub">March 20<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">th</sup>, 21<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">st</sup> &amp; 22<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">nd</sup>, 2027 · Austin, Texas</div>
+    <h2>Music, Ceremony, &amp; Collective Action</h2>
+    <p>Enter your name and email to view the event information.</p>
+    <form id="gateForm" novalidate>
+      <input id="gateName" type="text" placeholder="Full name" autocomplete="name" />
+      <input id="gateEmail" type="email" placeholder="your@email.com" autocomplete="email" />
+      <div class="err" id="gateErr"></div>
+      <button type="submit" id="gateBtn">View the deck</button>
+    </form>
+    <div class="fine">Confidential. Not for further distribution.</div>
+  </div>
+</div>
+
 <script>
 const slides=[...document.querySelectorAll('.slide')];
 const dots=document.getElementById('dots');
@@ -679,6 +748,83 @@ addEventListener('wheel',e=>{const t=Date.now();if(t-wl<720)return;
   if(Math.abs(e.deltaY)>28||Math.abs(e.deltaX)>28){wl=t;(e.deltaY+e.deltaX)>0?next():prev();}},{passive:true});
 const start=parseInt((location.hash||'').replace('#',''),10);
 go(start>=1&&start<=slides.length?start-1:0);
+
+/* email gate: captures name + email into Supabase (australasia-eclipse-2028 project,
+   isolated coherence_deck_leads table, insert-only RLS), same pattern as MSF + IMXP gates */
+(function(){
+  const KEY='coherence_deck_access';
+  const SUPA_URL='https://qmxhsendoepqeyeolzil.supabase.co';
+  const SUPA_KEY='sb_publishable_qU4HH0buJWQW3_RJk3QlYg_5r84ZfdP';
+  const gate=document.getElementById('gate');
+  const EMAIL_KEY=KEY+'_email';
+
+  /* View-duration tracking: active-tab time per visit, recorded through the
+     deck_view_beat() database function into coherence_deck_views (separate
+     from the lead-capture gate, so it never touches the leads data). Email is
+     attached when known -- just submitted, or remembered from this browser --
+     otherwise the visit is tracked anonymously. Uses fetch(keepalive) rather
+     than sendBeacon on unload because Supabase's REST API needs the
+     apikey/Authorization headers, which sendBeacon can't send. */
+  function trackViews(email){
+    try{
+      const SID=(crypto.randomUUID?crypto.randomUUID():(Date.now()+'-'+Math.random().toString(16).slice(2)));
+      let activeMs=0, lastTick=(document.visibilityState==='visible'?Date.now():null), lastSent=-1;
+      function tick(){if(lastTick!==null){activeMs+=Math.min(Date.now()-lastTick,60000);lastTick=Date.now();}}
+      document.addEventListener('visibilitychange',()=>{tick();lastTick=document.visibilityState==='visible'?Date.now():null;if(document.visibilityState==='hidden')send(true);});
+      function send(keepalive){
+        tick();
+        const seconds=Math.round(activeMs/1000);
+        if(seconds<3||seconds===lastSent)return;
+        lastSent=seconds;
+        fetch(SUPA_URL+'/rest/v1/rpc/deck_view_beat',{
+          method:'POST', keepalive:!!keepalive,
+          headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json'},
+          body:JSON.stringify({p_deck:'coherence_info',p_session_id:SID,p_email:email||null,p_seconds:seconds})
+        }).catch(()=>{});
+      }
+      setInterval(()=>send(false),20000);
+      addEventListener('pagehide',()=>send(true));
+    }catch(_){}
+  }
+  let seen=false;try{seen=!!localStorage.getItem(KEY);}catch(_){}
+  let saved=null;try{saved=localStorage.getItem(EMAIL_KEY);}catch(_){}
+  /* unlocked before emails were saved: ask once, so every recorded view has an email address */
+  const returning=seen&&!saved;
+  if(seen&&saved){gate.classList.add('hide');trackViews(saved);return;}
+  const form=document.getElementById('gateForm');
+  const nameEl=document.getElementById('gateName');
+  const email=document.getElementById('gateEmail');
+  const err=document.getElementById('gateErr');
+  const btn=document.getElementById('gateBtn');
+  const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(returning){const h=gate.querySelector('h2'),p=gate.querySelector('p');if(h)h.textContent='Welcome back.';if(p)p.textContent='Please confirm your email to continue.';nameEl.style.display='none';btn.textContent='Continue';}
+
+  var opened=false;
+  function unlock(viewerEmail){
+    if(opened)return;opened=true;
+    try{localStorage.setItem(KEY,'1');if(viewerEmail)localStorage.setItem(EMAIL_KEY,viewerEmail);}catch(_){}
+    gate.classList.add('hide');
+    trackViews(viewerEmail);
+  }
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const v=email.value.trim();
+    const n=nameEl.value.trim();
+    if(!re.test(v)){err.textContent='Please enter a valid email address.';email.focus();return;}
+    err.textContent='';
+    btn.disabled=true; btn.textContent='Opening…';
+    if(returning){unlock(v);return;}   /* already a lead: just attach the email to this visit */
+    setTimeout(()=>unlock(v),4000);   /* a stalled request must not trap the viewer */
+    const payload={email:v, name:n||null, source:'coherence-deck-gate', referrer:document.referrer||null, user_agent:navigator.userAgent};
+    fetch(SUPA_URL+'/rest/v1/coherence_deck_leads',{
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(payload)
+    }).then(()=>unlock(v)).catch(()=>unlock(v));   /* never trap a real viewer behind a network hiccup */
+  });
+  email.focus();
+})();
 
 /* email gate: captures name + email into Supabase (australasia-eclipse-2028 project,
    isolated coherence_deck_leads table, insert-only RLS), same pattern as MSF + IMXP gates */
