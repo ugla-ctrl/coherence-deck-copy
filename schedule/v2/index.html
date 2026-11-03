@@ -58,6 +58,36 @@ h1 small{display:block;font-size:.34em;letter-spacing:.5em;margin-top:.4em}
 .allday{grid-column:1/-1;border-top:3px solid var(--ink);padding:12px 14px;font-size:.84rem;color:var(--ink-dim);line-height:1.5}
 .allday b{color:var(--ink);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem;margin-right:8px}
 .state{padding:40px;text-align:center;color:var(--ink-dim)}
+.btn{border:1px solid var(--copper);background:transparent;color:var(--copper-deep);border-radius:999px;padding:7px 15px;font:inherit;font-weight:500;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.btn.on{background:var(--copper-deep);color:#fff;border-color:var(--copper-deep)}
+.savest{font-size:.78rem;color:var(--ink-dim)}.savest.err{color:#b23b2e}
+.hint{display:none;font-size:.82rem;color:var(--ink-dim);line-height:1.5;margin-top:10px;max-width:80ch}
+body.edit .hint{display:block}
+.state{grid-column:1/-1}
+.ev{position:relative}
+.ev .tt{display:none;font-size:.74rem;color:var(--ink-dim);font-variant-numeric:tabular-nums;margin-bottom:3px}
+body.edit .ev .tt{display:block}
+.ev .ctl{display:none;gap:6px;flex-wrap:wrap;margin-top:6px}
+body.edit .ev .ctl{display:flex}
+.ctl button{font:inherit;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--ink-dim);border-radius:99px;padding:2px 8px;cursor:pointer}
+.ctl button.amph{color:var(--amph);border-color:var(--amph)}.ctl button.cer{color:var(--cer);border-color:var(--cer)}.ctl button.grove{color:var(--grove);border-color:var(--grove)}
+.ctl button.prop{border-style:dashed;color:var(--copper-deep);border-color:var(--copper)}
+.ctl button.hid{opacity:.6}
+body.edit .ev .v{display:none}
+.del{display:none;position:absolute;top:-4px;right:-6px;border:0;background:transparent;color:var(--ink-dim);opacity:.4;cursor:pointer;font-size:1.05rem;padding:2px 6px;border-radius:6px}
+body.edit .del{display:block}.del:hover{opacity:1;background:rgba(192,122,68,.16)}
+.add{display:none;align-self:flex-start;border:1px dashed var(--copper);background:transparent;color:var(--copper-deep);border-radius:99px;padding:3px 10px;font:inherit;font-size:.72rem;letter-spacing:.06em;cursor:pointer;margin-top:auto}
+body.edit .add{display:inline-block}
+body.edit .ev.hiddenweb{opacity:.45}
+body:not(.edit) .ev.hiddenweb{display:none}
+body.edit [data-f]{border-radius:4px;padding:1px 4px;margin:-1px -4px;cursor:text;min-width:1.4em;display:inline-block}
+body.edit [data-f]:hover{background:rgba(192,122,68,.12)}
+body.edit [data-f]:focus{outline:2px solid var(--copper);background:#fff}
+body.edit [data-f]:empty::before{content:attr(data-ph);color:var(--ink-dim);opacity:.5}
+body.edit .ev .w{display:block}
+body.edit .ev.prop .t::after{display:none}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:9px 16px;border-radius:999px;font-size:.84rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+.toast.show{opacity:1}
 .foot{margin-top:28px;font-size:.8rem;color:var(--ink-dim);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media (max-width:760px){
@@ -77,11 +107,14 @@ h1 small{display:block;font-size:.34em;letter-spacing:.5em;margin-top:.4em}
   <span class="draft">Grid draft · v2</span>
   <div class="eyebrow">March 20<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">th</sup>, 21<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">st</sup> &amp; 22<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">nd</sup>, 2027 · Austin, Texas</div>
   <h1>COHERENCE<small>SCHEDULE</small></h1>
-  <div class="meta"><span>All times Central.</span><span id="updated"></span><a href="../">Edit in the list view →</a></div>
+  <div class="meta"><span>All times Central.</span><span id="updated"></span><a href="../">List view →</a></div>
+  <div class="meta"><button class="btn" id="editToggle" style="display:none">Edit schedule</button><span class="savest" id="savest"></span></div>
+  <div class="hint">Click any title, artist or time to change it, then press Enter or click away to save. Click the venue or status chip to cycle it. Use + Add to put something new in a time slot (change its time to make a new row). Everything saves straight into the master Google Sheet.</div>
   <div class="legend"><span><i style="background:var(--amph)"></i>Amphitheater</span><span><i style="background:var(--cer)"></i>Ceremony Garden</span><span><i style="background:var(--grove)"></i>The Grove</span></div>
 </header>
 <div class="tabs" role="tablist" id="tabs"></div>
 <div class="board"><div class="grid" id="grid"><div class="state">Loading the schedule…</div></div></div>
+<div class="toast" id="toast"></div>
 <div class="foot"><span>Live from the master schedule sheet. Subject to change.</span><span>Coherence · Produced by IMXP and UNIFY</span></div>
 </div>
 <script>
@@ -103,41 +136,78 @@ function parseCSV(text){const rows=[];let row=[],cell='',q=false;for(let i=0;i<t
   const K={day:key('day'),start:key('start'),end:key('end'),stage:key('stage'),title:key('title'),type:key('type'),who:key('lead'),status:key('status'),show:key('show')};
   return rows.filter(r=>r.some(x=>x&&x.trim())).map(r=>{const o={};for(const k in K)o[k]=K[k]<0?'':(r[K[k]]||'').trim();return o;});}
 
-let cur=0;
-function render(rows){
-  rows=rows.filter(r=>r.title&&(r.status||'').toLowerCase()!=='cancelled'&&(r.show||'Y').toUpperCase()!=='N');
-  const kind=r=>(r.type||'').toLowerCase();
-  const timed=rows.filter(r=>!['theme','anchor'].includes(kind(r))&&mins(r.start)!=null);
-  const dur=r=>{const s=mins(r.start),e=mins(r.end);return e==null?60:(e<=s?e+1440:e)-s;};
+let cur=0,rows=[],editing=false,apiOK=false;
+const STAGES=['Amphitheater Stage','Ceremony Garden','The Grove',''];
+const DATES={Saturday:'2027-03-20',Sunday:'2027-03-21',Monday:'2027-03-22'};
+const kind=r=>(r.type||'').toLowerCase();
+const ed=(id,f,ph,val)=>editing?`<span data-f="${f}" data-id="${id}" data-ph="${ph}" contenteditable="true">${esc(val)}</span>`:esc(val);
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),1500);}
+function setSt(t,err){const e=$('#savest');e.textContent=t;e.classList.toggle('err',!!err);}
+function render(){
+  document.body.classList.toggle('edit',editing);
+  const tg=$('#editToggle');tg.textContent=editing?'Done editing':'Edit schedule';tg.classList.toggle('on',editing);
+  const vis=rows.filter(r=>(r.title||editing)&&(r.status||'').toLowerCase()!=='cancelled'&&(editing||(r.show||'Y').toUpperCase()!=='N'));
+  const timed=vis.filter(r=>!['theme','anchor'].includes(kind(r))&&(mins(r.start)!=null||editing));
+  const dur=r=>{const s=mins(r.start),e=mins(r.end);if(s==null)return 60;return e==null?60:(e<=s?e+1440:e)-s;};
   const grid=timed.filter(r=>dur(r)<=LONG), allday=timed.filter(r=>dur(r)>LONG);
-  const slots=[...new Set(grid.map(r=>mins(r.start)))].sort((a,b)=>a-b);
+  const st=r=>mins(r.start)??9999;
+  const slots=[...new Set(grid.map(st))].sort((a,b)=>a-b);
   let h='<div class="hd"></div>';
   DAYS.forEach((D,i)=>{const th=rows.find(r=>r.day===D.d&&kind(r)==='theme');
     const an=rows.filter(r=>r.day===D.d&&kind(r)==='anchor');
-    h+=`<div class="hd" data-day="${i}"><div class="dt">${D.date} · ${D.short}</div><h2>${esc(D.name)}</h2>${th?`<div class="th">${esc(th.title)}</div>`:''}${an.length?'<div class="an">'+an.map(a=>`<span>${esc(a.title)}${a.start?' · '+esc(fmt(mins(a.start))):''}</span>`).join('')+'</div>':''}</div>`;});
-  slots.forEach((s,k)=>{
-    const ends=grid.filter(r=>mins(r.start)===s).map(r=>{const e=mins(r.end);return e==null?null:(e<=s?e+1440:e);}).filter(Boolean);
-    const endMax=ends.length?Math.max(...ends):null;
-    h+=`<div class="tm">${fmt(s)}${endMax&&endMax>=s+150&&(k==slots.length-1)?`<small>to ${fmt(endMax)}</small>`:''}</div>`;
-    DAYS.forEach((D,i)=>{const evs=grid.filter(r=>r.day===D.d&&mins(r.start)===s);
+    h+=`<div class="hd" data-day="${i}"><div class="dt">${D.date} · ${D.short}</div><h2>${esc(D.name)}</h2>${th?`<div class="th">${ed(th.id,'title','Day theme',th.title)}</div>`:''}${an.length?'<div class="an">'+an.map(a=>`<span>${esc(a.title)}${a.start?' · '+esc(fmt(mins(a.start))):''}</span>`).join('')+'</div>':''}</div>`;});
+  slots.forEach(s=>{
+    h+=`<div class="tm">${s===9999?'No time':fmt(s)}</div>`;
+    DAYS.forEach((D,i)=>{const evs=grid.filter(r=>r.day===D.d&&st(r)===s);
       h+=`<div class="cell" data-day="${i}">`+evs.map(e=>{const [vc,vn]=venue(e.stage);const t=kind(e);
         let title=e.title, who=e.who&&e.who!=='TBD'&&e.who!==e.title?e.who:'';
-        if(t==='panel'){const m=title.match(/^(Keynote\s*&\s*Panel):?\s*(.*)$/i);if(m){title=m[1];who=m[2]||who;}}
-        const isTBD=(e.who||'').toUpperCase()==='TBD'&&!who;
-        return `<div class="ev ${esc(t)}${(e.status||'').toLowerCase()==='proposed'?' prop':''}"><div class="t">${esc(title)}</div>${who?`<div class="w">${esc(who)}</div>`:isTBD?'<div class="w tbd">TBD</div>':''}<div class="v ${vc}">${vn}</div></div>`;}).join('')+`</div>`;});
+        if(t==='panel'&&!editing){const m=title.match(/^(Keynote\s*&\s*Panel):?\s*(.*)$/i);if(m){title=m[1];who=m[2]||who;}}
+        const isTBD=(e.who||'').toUpperCase()==='TBD'&&!who;const prop=(e.status||'').toLowerCase()==='proposed';const hid=(e.show||'Y').toUpperCase()==='N';
+        const whoHtml=editing?`<div class="w">${ed(e.id,'who','Artist / lead',e.who)}</div>`:(who?`<div class="w">${esc(who)}</div>`:isTBD?'<div class="w tbd">TBD</div>':'');
+        return `<div class="ev ${esc(t)}${prop?' prop':''}${hid?' hiddenweb':''}"><div class="tt">${ed(e.id,'start','Start',e.start)} – ${ed(e.id,'end','End',e.end)}</div><div class="t">${editing?ed(e.id,'title','Title',e.title):esc(title)}</div>${whoHtml}<div class="v ${vc}">${vn}</div>
+          <div class="ctl"><button class="${vc}" data-cycle="stage" data-id="${e.id}">${vn}</button><button class="${prop?'prop':''}" data-cycle="status" data-id="${e.id}">${esc(e.status||'Status')}</button><button class="${hid?'hid':''}" data-cycle="show" data-id="${e.id}">${hid?'Hidden':'On web'}</button></div>
+          <button class="del" data-del="${e.id}" title="Remove">×</button></div>`;}).join('')+(s!==9999?`<button class="add" data-add="${D.d}" data-start="${fmt(s)}">+ Add</button>`:'')+`</div>`;});
   });
   if(allday.length){const by={};allday.forEach(r=>{(by[r.title]=by[r.title]||{st:r.stage,d:[]}).d.push(r);});
-    h+=`<div class="allday"><b>Open all day</b>`+Object.entries(by).map(([t,o])=>`${esc(t)}, ${venue(o.st)[1]}: `+DAYS.map(D=>{const r=o.d.find(x=>x.day===D.d);return r?`${D.short} ${fmt(mins(r.start))} to ${fmt(mins(r.end))}`:null;}).filter(Boolean).join(' · ')).join('<br>')+`</div>`;}
+    h+=`<div class="allday"><b>Open all day</b>`+Object.entries(by).map(([t,o])=>`${esc(t)}, ${venue(o.st)[1]}: `+DAYS.map(D=>{const r=o.d.find(x=>x.day===D.d);return r?`${D.short} ${editing?ed(r.id,'start','Start',r.start)+' to '+ed(r.id,'end','End',r.end):fmt(mins(r.start))+' to '+fmt(mins(r.end))}`:null;}).filter(Boolean).join(' · ')).join('<br>')+`</div>`;}
   $('#grid').innerHTML=h; setDay(cur);
 }
 function setDay(i){cur=i;document.querySelectorAll('#grid [data-day]').forEach(el=>el.classList.toggle('on',+el.dataset.day===i));
   document.querySelectorAll('#tabs button').forEach((b,k)=>b.setAttribute('aria-selected',k===i));}
 $('#tabs').innerHTML=DAYS.map((D,i)=>`<button role="tab" aria-selected="${i===0}" data-i="${i}">${D.short} ${D.date}</button>`).join('');
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setDay(+b.dataset.i);});
+
+async function apiPost(body){const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});const j=await r.json();if(!j.ok)throw new Error(j.error||'error');return j;}
+const find=id=>rows.find(r=>r.id===id);
+async function save(id,patch){const row=find(id);if(!row)return false;const ch={};for(const k in patch)if((row[k]??'')!==(patch[k]??''))ch[k]=patch[k];
+  if(!Object.keys(ch).length)return false;Object.assign(row,ch);setSt('Saving…');
+  try{await apiPost({sheet:'schedule',action:'update',id,fields:ch});setSt('Saved to the sheet');toast('Saved');}catch(e){setSt('Could not save. Check the sheet.',true);toast('Could not save');}
+  return true;}
+document.addEventListener('focusout',async e=>{const el=e.target;if(!editing||!el.hasAttribute||!el.hasAttribute('data-f'))return;
+  const f=el.dataset.f;let v=el.textContent.trim();if((f==='start'||f==='end')&&v&&mins(v)!=null)v=fmt(mins(v));
+  const changed=await save(el.dataset.id,{[f]:v});if(changed&&(f==='start'||f==='end'))render();});
+document.addEventListener('keydown',e=>{const el=e.target;if(!el.hasAttribute||!el.hasAttribute('data-f'))return;
+  if(e.key==='Enter'){e.preventDefault();el.blur();}
+  if(e.key==='Escape'){const r=find(el.dataset.id);el.textContent=r?.[el.dataset.f]??'';el.blur();}});
+document.addEventListener('click',async e=>{
+  if(e.target.closest('#editToggle')){editing=!editing;render();return;}
+  if(!editing)return;
+  const c=e.target.closest('[data-cycle]');
+  if(c){const id=c.dataset.id,f=c.dataset.cycle,row=find(id)||{};const list=f==='stage'?STAGES:f==='show'?['Y','N']:['Confirmed','Proposed'];
+    const cur=row[f]||(f==='show'?'Y':'');const next=list[(list.indexOf(cur)+1)%list.length];await save(id,{[f]:next});render();return;}
+  const d=e.target.closest('[data-del]');
+  if(d){if(!d.dataset.armed){d.dataset.armed='1';d.textContent='remove?';d.style.opacity=1;d.style.fontSize='.7rem';setTimeout(()=>{if(d.isConnected){d.dataset.armed='';d.textContent='×';d.style.fontSize='';d.style.opacity='';}},2500);return;}
+    setSt('Removing…');try{await apiPost({sheet:'schedule',action:'delete',id:d.dataset.del});rows=rows.filter(r=>r.id!==d.dataset.del);setSt('Removed');render();}catch(err){setSt('Could not remove',true);}return;}
+  const a=e.target.closest('[data-add]');
+  if(a){setSt('Adding…');const day=a.dataset.add,s0=mins(a.dataset.start);
+    const f={day,date:DATES[day],start:a.dataset.start,end:fmt(s0+60),stage:'Amphitheater Stage',title:'',type:'Music',who:'',desc:'',status:'Proposed',show:'Y',notes:'Added from the grid'};
+    try{const j=await apiPost({sheet:'schedule',action:'add',fields:f});rows.push({...f,id:j.id});setSt('Added');render();
+      const el=document.querySelector(`[data-f="title"][data-id="${j.id}"]`);if(el){el.focus();}}catch(err){setSt('Could not add',true);}}
+});
 (async()=>{
-  try{const j=await fetch(API_URL,{cache:'no-store'}).then(r=>r.json());render(j.schedule||[]);
-    $('#updated').textContent='Updated '+new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});}
-  catch(e){try{render(parseCSV(await fetch(SHEET_CSV_URL,{cache:'no-store'}).then(r=>r.text())));}catch(e2){$('#grid').innerHTML='<div class="state">Could not load the schedule. Refresh to try again.</div>';}}
+  try{const j=await fetch(API_URL,{cache:'no-store'}).then(r=>r.json());rows=j.schedule||[];apiOK=true;$('#editToggle').style.display='';
+    $('#updated').textContent='Live · '+new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});render();}
+  catch(e){try{rows=parseCSV(await fetch(SHEET_CSV_URL,{cache:'no-store'}).then(r=>r.text()));$('#updated').textContent='Showing the published schedule (editing unavailable right now)';render();}catch(e2){$('#grid').innerHTML='<div class="state">Could not load the schedule. Refresh to try again.</div>';}}
 })();
 </script>
 </body>
