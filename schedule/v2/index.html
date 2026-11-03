@@ -52,6 +52,7 @@ h1 small{display:block;font-size:.34em;letter-spacing:.5em;margin-top:.4em}
 .ev .w{color:var(--who);font-size:.9rem;margin-top:3px;line-height:1.35}
 .ev .tbd{color:var(--ink-dim);opacity:.6;font-style:italic}
 .ev .v{margin-top:auto;padding-top:6px;align-self:flex-end;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.v.custom{color:var(--anchor)}
 .v.amph{color:var(--amph)}.v.cer{color:var(--cer)}.v.grove{color:var(--grove)}.v.none{color:var(--ink-dim);opacity:.6}
 .ev.prop .t::after{content:'proposed';margin-left:8px;font-size:.6rem;letter-spacing:.14em;color:var(--copper-deep);border:1px dashed var(--copper);border-radius:99px;padding:1px 6px;vertical-align:2px;font-family:var(--sans);text-transform:uppercase;font-weight:500}
 .ev.music.prop .t::after{display:none}
@@ -69,6 +70,9 @@ body.edit .hint{display:block}
 body.edit .ev .tt{display:block}
 .ev .ctl{display:none;gap:6px;flex-wrap:wrap;margin-top:6px}
 body.edit .ev .ctl{display:flex}
+.ctl select,.ctl input{font:inherit;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:99px;padding:2px 6px;max-width:100%}
+.ctl select.amph{color:var(--amph);border-color:var(--amph)}.ctl select.cer{color:var(--cer);border-color:var(--cer)}.ctl select.grove{color:var(--grove);border-color:var(--grove)}.ctl select.custom{color:var(--anchor);border-color:var(--anchor)}
+.ctl input{text-transform:none;letter-spacing:0;border-color:var(--copper);min-width:9em}
 .ctl button{font:inherit;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--ink-dim);border-radius:99px;padding:2px 8px;cursor:pointer}
 .ctl button.amph{color:var(--amph);border-color:var(--amph)}.ctl button.cer{color:var(--cer);border-color:var(--cer)}.ctl button.grove{color:var(--grove);border-color:var(--grove)}
 .ctl button.prop{border-style:dashed;color:var(--copper-deep);border-color:var(--copper)}
@@ -127,7 +131,7 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 function mins(t){if(!t)return null;const m=String(t).match(/(\d{1,2})(?::(\d{2}))?(?::\d{2})?\s*([AP]M)?/i);if(!m)return null;
   let h=+m[1],mi=+(m[2]||0);const ap=(m[3]||'').toUpperCase();if(ap=='PM'&&h<12)h+=12;if(ap=='AM'&&h==12)h=0;let v=h*60+mi;if(v<4*60)v+=1440;return v;}
 function fmt(v,ampm=true){let h=Math.floor((v%1440)/60),mi=v%60;const ap=h>=12?'PM':'AM';h=h%12||12;return h+(mi?':'+String(mi).padStart(2,'0'):'')+(ampm?' '+ap:'');}
-function venue(s){s=(s||'').toLowerCase();if(s.startsWith('amph'))return['amph','Amphitheater'];if(s.startsWith('cer'))return['cer','Ceremony Garden'];if(s.includes('grove'))return['grove','The Grove'];return['none','Venue TBD'];}
+function venue(s){s=(s||'').toLowerCase();if(s.startsWith('amph'))return['amph','Amphitheater'];if(s.startsWith('cer'))return['cer','Ceremony Garden'];if(s.includes('grove'))return['grove','The Grove'];return s?['custom',s.replace(/\b\w/g,c=>c.toUpperCase())]:['none','Venue TBD'];}
 function parseCSV(text){const rows=[];let row=[],cell='',q=false;for(let i=0;i<text.length;i++){const c=text[i];
   if(q){if(c=='"'){if(text[i+1]=='"'){cell+='"';i++;}else q=false;}else cell+=c;}else if(c=='"')q=true;else if(c==','){row.push(cell);cell='';}
   else if(c=='\n'||c=='\r'){if(c=='\r'&&text[i+1]=='\n')i++;row.push(cell);rows.push(row);row=[];cell='';}else cell+=c;}
@@ -143,6 +147,12 @@ const kind=r=>(r.type||'').toLowerCase();
 const ed=(id,f,ph,val)=>editing?`<span data-f="${f}" data-id="${id}" data-ph="${ph}" contenteditable="true">${esc(val)}</span>`:esc(val);
 let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),1500);}
 function setSt(t,err){const e=$('#savest');e.textContent=t;e.classList.toggle('err',!!err);}
+const BASE_STAGES=['Amphitheater Stage','Ceremony Garden','The Grove'];
+function allStages(){const set=[...BASE_STAGES];rows.forEach(r=>{const st=(r.stage||'').trim();if(st&&!set.some(x=>x.toLowerCase()===st.toLowerCase()))set.push(st);});return set;}
+function venueSelect(e){const [vc]=venue(e.stage);const cur=(e.stage||'').trim();
+  return `<select class="${vc}" data-stage="${e.id}" aria-label="Venue">`+
+    allStages().map(v=>`<option value="${esc(v)}"${v.toLowerCase()===cur.toLowerCase()?' selected':''}>${esc(v)}</option>`).join('')+
+    `<option value=""${cur?'':' selected'}>No venue</option><option value="__new">+ Add a venue…</option></select>`;}
 function render(){
   document.body.classList.toggle('edit',editing);
   const tg=$('#editToggle');tg.textContent=editing?'Done editing':'Edit schedule';tg.classList.toggle('on',editing);
@@ -165,7 +175,7 @@ function render(){
         const isTBD=(e.who||'').toUpperCase()==='TBD'&&!who;const prop=(e.status||'').toLowerCase()==='proposed';const hid=(e.show||'Y').toUpperCase()==='N';
         const whoHtml=editing?`<div class="w">${ed(e.id,'who','Artist / lead',e.who)}</div>`:(who?`<div class="w">${esc(who)}</div>`:isTBD?'<div class="w tbd">TBD</div>':'');
         return `<div class="ev ${esc(t)}${prop?' prop':''}${hid?' hiddenweb':''}"><div class="tt">${ed(e.id,'start','Start',e.start)} – ${ed(e.id,'end','End',e.end)}</div><div class="t">${editing?ed(e.id,'title','Title',e.title):esc(title)}</div>${whoHtml}<div class="v ${vc}">${vn}</div>
-          <div class="ctl"><button class="${vc}" data-cycle="stage" data-id="${e.id}">${vn}</button><button class="${prop?'prop':''}" data-cycle="status" data-id="${e.id}">${esc(e.status||'Status')}</button><button class="${hid?'hid':''}" data-cycle="show" data-id="${e.id}">${hid?'Hidden':'On web'}</button></div>
+          <div class="ctl">${venueSelect(e)}<button class="${prop?'prop':''}" data-cycle="status" data-id="${e.id}">${esc(e.status||'Status')}</button><button class="${hid?'hid':''}" data-cycle="show" data-id="${e.id}">${hid?'Hidden':'On web'}</button></div>
           <button class="del" data-del="${e.id}" title="Remove">×</button></div>`;}).join('')+(s!==9999?`<button class="add" data-add="${D.d}" data-start="${fmt(s)}">+ Add</button>`:'')+`</div>`;});
   });
   if(allday.length){const by={};allday.forEach(r=>{(by[r.title]=by[r.title]||{st:r.stage,d:[]}).d.push(r);});
@@ -189,6 +199,14 @@ document.addEventListener('focusout',async e=>{const el=e.target;if(!editing||!e
 document.addEventListener('keydown',e=>{const el=e.target;if(!el.hasAttribute||!el.hasAttribute('data-f'))return;
   if(e.key==='Enter'){e.preventDefault();el.blur();}
   if(e.key==='Escape'){const r=find(el.dataset.id);el.textContent=r?.[el.dataset.f]??'';el.blur();}});
+document.addEventListener('change',async e=>{
+  const sel=e.target.closest('select[data-stage]');if(!sel||!editing)return;const id=sel.dataset.stage;
+  if(sel.value==='__new'){const inp=document.createElement('input');inp.type='text';inp.placeholder='New venue name';inp.dataset.newstage=id;inp.setAttribute('aria-label','New venue name');sel.replaceWith(inp);inp.focus();return;}
+  await save(id,{stage:sel.value});render();});
+async function commitNewStage(inp){if(inp.dataset.done)return;inp.dataset.done='1';const v=inp.value.trim();if(v)await save(inp.dataset.newstage,{stage:v});render();}
+document.addEventListener('keydown',e=>{const inp=e.target.closest&&e.target.closest('input[data-newstage]');if(!inp)return;
+  if(e.key==='Enter'){e.preventDefault();commitNewStage(inp);}if(e.key==='Escape'){inp.dataset.done='1';render();}});
+document.addEventListener('focusout',e=>{const inp=e.target.closest&&e.target.closest('input[data-newstage]');if(inp)commitNewStage(inp);});
 document.addEventListener('click',async e=>{
   if(e.target.closest('#editToggle')){editing=!editing;render();return;}
   if(!editing)return;
