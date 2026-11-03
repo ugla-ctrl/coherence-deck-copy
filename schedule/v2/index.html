@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Coherence Festival · Schedule (Grid Draft)</title>
+<link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png"><link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="description" content="Coherence Festival schedule, Austin, Texas. March 20th, 21st &amp; 22nd, 2027.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a whiteboard-style grid. Time down the left, one column per day, every cell = what, who, where. */
+:root{--cream:#fbf4e8;--ivory:#fffaf1;--ink:#2b1c12;--ink-dim:#5e4a3a;--line:rgba(43,28,18,.16);--rule:rgba(43,28,18,.55);
+ --copper:#c07a44;--copper-deep:#9a5b2e;--who:#2f4f8a;--amph:#3f7a8a;--cer:#b8683a;--grove:#6e8a5a;--anchor:#7a6a9a;
+ --serif:'Fraunces',Georgia,serif;--sans:'Work Sans','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:0 max(16px,env(safe-area-inset-right,0px)) 72px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+header{padding:44px 0 22px}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--copper-deep);font-weight:500}
+h1{font-weight:500;letter-spacing:.14em;font-size:clamp(2rem,5vw,3.4rem);line-height:1;margin-top:12px}
+h1 small{display:block;font-size:.34em;letter-spacing:.5em;margin-top:.4em}
+.meta{margin-top:14px;font-size:.86rem;color:var(--ink-dim);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.meta a{color:var(--copper-deep);font-weight:500}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+.legend span{display:inline-flex;align-items:center;gap:7px}.legend i{width:9px;height:9px;border-radius:50%}
+.draft{display:inline-block;background:var(--copper-deep);color:#fff;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:99px;margin-bottom:14px}
+
+/* day tabs: phone only */
+.tabs{display:none;gap:6px;margin:6px 0 10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--cream);padding:10px 0;z-index:3}
+.tabs button{flex:1;font:inherit;font-weight:500;font-size:.84rem;letter-spacing:.06em;padding:9px 6px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink-dim);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+.board{background:var(--ivory);border:10px solid #d9d2c6;border-radius:6px;box-shadow:0 1px 0 #bdb4a6,0 12px 30px rgba(43,28,18,.10)}
+.grid{display:grid;grid-template-columns:86px repeat(3,minmax(0,1fr))}
+.hd{padding:14px 16px 12px;border-bottom:3px solid var(--ink);border-left:2px solid var(--ink)}
+.hd:first-child{border-left:0}
+.hd .dt{font-size:.78rem;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+.hd h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.25rem,2.2vw,1.75rem);letter-spacing:.01em;color:var(--who);text-transform:uppercase;line-height:1.1;margin-top:2px}
+.hd .th{font-family:var(--serif);font-style:italic;color:var(--copper-deep);font-size:.92rem;margin-top:4px}
+.hd .an{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.hd .an span{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--anchor);border:1px solid var(--anchor);border-radius:99px;padding:2px 8px}
+.tm{padding:12px 10px 10px 4px;font-weight:600;font-size:.92rem;font-variant-numeric:tabular-nums;border-top:2px solid var(--rule);text-align:right;white-space:nowrap}
+.tm small{display:block;font-weight:400;color:var(--ink-dim);font-size:.74rem}
+.cell{border-top:2px solid var(--rule);border-left:2px solid var(--ink);padding:10px 14px 8px;display:flex;flex-direction:column;gap:8px;min-height:74px;min-width:0}
+.ev{display:flex;flex-direction:column;flex:1;min-width:0}
+.ev + .ev{border-top:1px dashed var(--line);padding-top:8px}
+.ev .t{font-size:.84rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1.3}
+.ev.music .t{font-family:var(--serif);text-transform:none;letter-spacing:0;font-weight:500;font-size:1.25rem;color:#2e6b45}
+.ev .w{color:var(--who);font-size:.9rem;margin-top:3px;line-height:1.35}
+.ev .tbd{color:var(--ink-dim);opacity:.6;font-style:italic}
+.ev .v{margin-top:auto;padding-top:6px;align-self:flex-end;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.v.amph{color:var(--amph)}.v.cer{color:var(--cer)}.v.grove{color:var(--grove)}.v.none{color:var(--ink-dim);opacity:.6}
+.ev.prop .t::after{content:'proposed';margin-left:8px;font-size:.6rem;letter-spacing:.14em;color:var(--copper-deep);border:1px dashed var(--copper);border-radius:99px;padding:1px 6px;vertical-align:2px;font-family:var(--sans);text-transform:uppercase;font-weight:500}
+.ev.music.prop .t::after{display:none}
+.allday{grid-column:1/-1;border-top:3px solid var(--ink);padding:12px 14px;font-size:.84rem;color:var(--ink-dim);line-height:1.5}
+.allday b{color:var(--ink);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem;margin-right:8px}
+.state{padding:40px;text-align:center;color:var(--ink-dim)}
+.foot{margin-top:28px;font-size:.8rem;color:var(--ink-dim);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:760px){
+  .tabs{display:flex}
+  .board{border-width:6px}
+  .grid{grid-template-columns:66px minmax(0,1fr)}
+  .grid [data-day]:not(.on){display:none}
+  .tm{font-size:.84rem}
+  .hd h2{font-size:1.4rem}
+}
+@media (prefers-reduced-motion:no-preference){.cell{transition:background .15s}.cell:hover{background:rgba(192,122,68,.05)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="draft">Grid draft · v2</span>
+  <div class="eyebrow">March 20<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">th</sup>, 21<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">st</sup> &amp; 22<sup style="font-size:.7em;line-height:0;vertical-align:.75em;letter-spacing:.04em;text-transform:none">nd</sup>, 2027 · Austin, Texas</div>
+  <h1>COHERENCE<small>SCHEDULE</small></h1>
+  <div class="meta"><span>All times Central.</span><span id="updated"></span><a href="../">Edit in the list view →</a></div>
+  <div class="legend"><span><i style="background:var(--amph)"></i>Amphitheater</span><span><i style="background:var(--cer)"></i>Ceremony Garden</span><span><i style="background:var(--grove)"></i>The Grove</span></div>
+</header>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="board"><div class="grid" id="grid"><div class="state">Loading the schedule…</div></div></div>
+<div class="foot"><span>Live from the master schedule sheet. Subject to change.</span><span>Coherence · Produced by IMXP and UNIFY</span></div>
+</div>
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbx09mDIZL0g4G7uN6c1HDXQab-G7OaHoEwNNJ5l7zoeZTUq9elxtYrOCbR0os0DDUtoyg/exec";
+const SHEET_CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vQowyrckPwigpRjTptJb8RoLrHyLe2MFIRmOZao78lEOgGvD9h_fb0ZP8KAkfRckACXPYgaDki-5xiw/pub?gid=991731362&single=true&output=csv";
+const DAYS=[{d:'Saturday',short:'Sat',date:'3/20',name:'Equinox'},{d:'Sunday',short:'Sun',date:'3/21',name:'Full Moon'},{d:'Monday',short:'Mon',date:'3/22',name:'World Water Day'}];
+const LONG=4*60; /* events longer than this (Bath House etc.) go in the all-day strip */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function mins(t){if(!t)return null;const m=String(t).match(/(\d{1,2})(?::(\d{2}))?(?::\d{2})?\s*([AP]M)?/i);if(!m)return null;
+  let h=+m[1],mi=+(m[2]||0);const ap=(m[3]||'').toUpperCase();if(ap=='PM'&&h<12)h+=12;if(ap=='AM'&&h==12)h=0;let v=h*60+mi;if(v<4*60)v+=1440;return v;}
+function fmt(v,ampm=true){let h=Math.floor((v%1440)/60),mi=v%60;const ap=h>=12?'PM':'AM';h=h%12||12;return h+(mi?':'+String(mi).padStart(2,'0'):'')+(ampm?' '+ap:'');}
+function venue(s){s=(s||'').toLowerCase();if(s.startsWith('amph'))return['amph','Amphitheater'];if(s.startsWith('cer'))return['cer','Ceremony Garden'];if(s.includes('grove'))return['grove','The Grove'];return['none','Venue TBD'];}
+function parseCSV(text){const rows=[];let row=[],cell='',q=false;for(let i=0;i<text.length;i++){const c=text[i];
+  if(q){if(c=='"'){if(text[i+1]=='"'){cell+='"';i++;}else q=false;}else cell+=c;}else if(c=='"')q=true;else if(c==','){row.push(cell);cell='';}
+  else if(c=='\n'||c=='\r'){if(c=='\r'&&text[i+1]=='\n')i++;row.push(cell);rows.push(row);row=[];cell='';}else cell+=c;}
+  if(cell!==''||row.length){row.push(cell);rows.push(row);}
+  const head=rows.shift().map(h=>h.trim().toLowerCase());const key=n=>head.findIndex(h=>h.startsWith(n));
+  const K={day:key('day'),start:key('start'),end:key('end'),stage:key('stage'),title:key('title'),type:key('type'),who:key('lead'),status:key('status'),show:key('show')};
+  return rows.filter(r=>r.some(x=>x&&x.trim())).map(r=>{const o={};for(const k in K)o[k]=K[k]<0?'':(r[K[k]]||'').trim();return o;});}
+
+let cur=0;
+function render(rows){
+  rows=rows.filter(r=>r.title&&(r.status||'').toLowerCase()!=='cancelled'&&(r.show||'Y').toUpperCase()!=='N');
+  const kind=r=>(r.type||'').toLowerCase();
+  const timed=rows.filter(r=>!['theme','anchor'].includes(kind(r))&&mins(r.start)!=null);
+  const dur=r=>{const s=mins(r.start),e=mins(r.end);return e==null?60:(e<=s?e+1440:e)-s;};
+  const grid=timed.filter(r=>dur(r)<=LONG), allday=timed.filter(r=>dur(r)>LONG);
+  const slots=[...new Set(grid.map(r=>mins(r.start)))].sort((a,b)=>a-b);
+  let h='<div class="hd"></div>';
+  DAYS.forEach((D,i)=>{const th=rows.find(r=>r.day===D.d&&kind(r)==='theme');
+    const an=rows.filter(r=>r.day===D.d&&kind(r)==='anchor');
+    h+=`<div class="hd" data-day="${i}"><div class="dt">${D.date} · ${D.short}</div><h2>${esc(D.name)}</h2>${th?`<div class="th">${esc(th.title)}</div>`:''}${an.length?'<div class="an">'+an.map(a=>`<span>${esc(a.title)}${a.start?' · '+esc(fmt(mins(a.start))):''}</span>`).join('')+'</div>':''}</div>`;});
+  slots.forEach((s,k)=>{
+    const ends=grid.filter(r=>mins(r.start)===s).map(r=>{const e=mins(r.end);return e==null?null:(e<=s?e+1440:e);}).filter(Boolean);
+    const endMax=ends.length?Math.max(...ends):null;
+    h+=`<div class="tm">${fmt(s)}${endMax&&endMax>=s+150&&(k==slots.length-1)?`<small>to ${fmt(endMax)}</small>`:''}</div>`;
+    DAYS.forEach((D,i)=>{const evs=grid.filter(r=>r.day===D.d&&mins(r.start)===s);
+      h+=`<div class="cell" data-day="${i}">`+evs.map(e=>{const [vc,vn]=venue(e.stage);const t=kind(e);
+        let title=e.title, who=e.who&&e.who!=='TBD'&&e.who!==e.title?e.who:'';
+        if(t==='panel'){const m=title.match(/^(Keynote\s*&\s*Panel):?\s*(.*)$/i);if(m){title=m[1];who=m[2]||who;}}
+        const isTBD=(e.who||'').toUpperCase()==='TBD'&&!who;
+        return `<div class="ev ${esc(t)}${(e.status||'').toLowerCase()==='proposed'?' prop':''}"><div class="t">${esc(title)}</div>${who?`<div class="w">${esc(who)}</div>`:isTBD?'<div class="w tbd">TBD</div>':''}<div class="v ${vc}">${vn}</div></div>`;}).join('')+`</div>`;});
+  });
+  if(allday.length){const by={};allday.forEach(r=>{(by[r.title]=by[r.title]||{st:r.stage,d:[]}).d.push(r);});
+    h+=`<div class="allday"><b>Open all day</b>`+Object.entries(by).map(([t,o])=>`${esc(t)}, ${venue(o.st)[1]}: `+DAYS.map(D=>{const r=o.d.find(x=>x.day===D.d);return r?`${D.short} ${fmt(mins(r.start))} to ${fmt(mins(r.end))}`:null;}).filter(Boolean).join(' · ')).join('<br>')+`</div>`;}
+  $('#grid').innerHTML=h; setDay(cur);
+}
+function setDay(i){cur=i;document.querySelectorAll('#grid [data-day]').forEach(el=>el.classList.toggle('on',+el.dataset.day===i));
+  document.querySelectorAll('#tabs button').forEach((b,k)=>b.setAttribute('aria-selected',k===i));}
+$('#tabs').innerHTML=DAYS.map((D,i)=>`<button role="tab" aria-selected="${i===0}" data-i="${i}">${D.short} ${D.date}</button>`).join('');
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setDay(+b.dataset.i);});
+(async()=>{
+  try{const j=await fetch(API_URL,{cache:'no-store'}).then(r=>r.json());render(j.schedule||[]);
+    $('#updated').textContent='Updated '+new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});}
+  catch(e){try{render(parseCSV(await fetch(SHEET_CSV_URL,{cache:'no-store'}).then(r=>r.text())));}catch(e2){$('#grid').innerHTML='<div class="state">Could not load the schedule. Refresh to try again.</div>';}}
+})();
+</script>
+</body>
+</html>
