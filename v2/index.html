@@ -591,7 +591,7 @@
       <div><h3>New money, seeking meaning</h3><p>Austin startups raised a record <strong>$7.19B</strong> in 2025. The people building the new economy live here, and they are investing in their health and purpose, not just things.</p></div>
       <div><h3>The whole human, one place</h3><p>Health and healing, ceremony and consciousness, music and celebration. Austin is known for each one on its own, never for all of them together.</p></div>
     </div>
-    <div class="credit" style="color:var(--ink-dim)">Sources: Crunchbase · Global Wellness Institute</div>
+    <div class="credit src" style="color:var(--ink-dim)">Sources: Crunchbase · Global Wellness Institute</div>
     <div class="sec">07 · Market</div><div class="fd">Event Information</div>
   </section>
 
@@ -825,6 +825,8 @@ body.ce-on [data-ek]{outline:1px dashed rgba(193,172,83,.75);outline-offset:3px;
 body.ce-on [data-ek]:hover{background:rgba(193,172,83,.10)}
 body.ce-on [data-ek]:focus{outline:2px solid #C1AC53;background:rgba(193,172,83,.14)}
 body.ce-on [data-ek].ce-saved{outline-color:#6e8a5a}
+/* photo captions and credits removed (kept in the page so saved edit keys stay stable) */
+.credit:not(.src),.cap-s,.split .side figcaption{display:none!important}
 body.ce-on .st{opacity:1!important;transform:none!important}
 body.ce-on [data-ek]{pointer-events:auto!important;-webkit-user-select:text!important;user-select:text!important}
 body.ce-on .credit,body.ce-on .cap-s{z-index:6}
