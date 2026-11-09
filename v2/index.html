@@ -839,7 +839,7 @@ go(start>=1&&start<=slides.length?start-1:0);
 </script>
 
 <style>
-#ceBar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;display:none;align-items:center;gap:10px;background:#15212B;color:#F4EEE3;border:1px solid rgba(193,172,83,.6);border-radius:999px;padding:8px 10px 8px 16px;font:500 13px/1.2 'Work Sans',sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.35);max-width:calc(100vw - 32px)}
+#ceBar{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:60;display:none;align-items:center;gap:10px;background:#15212B;color:#F4EEE3;border:1px solid rgba(193,172,83,.6);border-radius:999px;padding:8px 10px 8px 16px;font:500 13px/1.2 'Work Sans',sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.35);max-width:calc(100vw - 32px)}
 #ceBar.show{display:flex}
 #ceBar input{font:inherit;padding:6px 10px;border-radius:999px;border:1px solid rgba(244,238,227,.3);background:transparent;color:inherit;width:150px}
 #ceBar button{font:inherit;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px;padding:7px 12px;border-radius:999px;border:0;background:#C1AC53;color:#15212B;cursor:pointer}
@@ -850,6 +850,8 @@ body.ce-on [data-ek]:hover{background:rgba(193,172,83,.10)}
 body.ce-on [data-ek]:focus{outline:2px solid #C1AC53;background:rgba(193,172,83,.14)}
 body.ce-on [data-ek].ce-saved{outline-color:#6e8a5a}
 body.ce-on .st{opacity:1!important;transform:none!important}
+body.ce-on [data-ek]{pointer-events:auto!important;-webkit-user-select:text!important;user-select:text!important}
+body.ce-on .credit,body.ce-on .cap-s{z-index:6}
 #ceOpen{position:fixed;left:calc(14px + env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:59;font:600 11px/1 'Work Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 13px;border-radius:999px;border:1px solid rgba(193,172,83,.7);background:rgba(21,33,43,.85);color:#F4EEE3;cursor:pointer}
 </style>
 <button id="ceOpen" type="button">Edit copy</button>
@@ -873,12 +875,18 @@ body.ce-on .st{opacity:1!important;transform:none!important}
     });
   });
   const orig={}; els.forEach(el=>orig[el.dataset.ek]=el.innerHTML);
+  function fit(){els.forEach(el=>{if(getComputedStyle(el).whiteSpace!=='nowrap')return;
+    if(!el.dataset.fs0){el.dataset.fs0=el.style.fontSize||'';}
+    el.style.fontSize=el.dataset.fs0;
+    const ps=getComputedStyle(el.parentElement), box=el.parentElement.clientWidth-parseFloat(ps.paddingLeft)-parseFloat(ps.paddingRight), w=el.scrollWidth;
+    if(box&&w>box){const fs=parseFloat(getComputedStyle(el).fontSize);el.style.fontSize=Math.max(fs*0.55,fs*box/w*0.98)+'px';}});}
+  window.addEventListener('resize',fit); document.fonts&&document.fonts.ready.then(fit); fit();
   function clean(html){const d=document.createElement('div');d.innerHTML=html;
     d.querySelectorAll('script,style,iframe,object,embed').forEach(x=>x.remove());
     d.querySelectorAll('*').forEach(x=>{[...x.attributes].forEach(a=>{ if(!(a.name==='class'||(a.name==='style'&&x.tagName==='SUP')))x.removeAttribute(a.name);});});
     return d.innerHTML.replace(/&nbsp;/g,' ').trim();}
   fetch(URL_+'/rest/v1/deck_copy?select=key,html&deck=eq.'+DECK,{headers:H,cache:'no-store'}).then(r=>r.json()).then(rows=>{
-    (rows||[]).forEach(r=>{const el=document.querySelector('[data-ek="'+CSS.escape(r.key)+'"]');if(el)el.innerHTML=r.html;});
+    (rows||[]).forEach(r=>{const el=document.querySelector('[data-ek="'+CSS.escape(r.key)+'"]');if(el)el.innerHTML=r.html;});fit();
   }).catch(()=>{});
   let pass=null; try{pass=sessionStorage.getItem('ce_pass');}catch(_){}
   function msg(t){const m=bar.querySelector('.msg');if(m)m.textContent=t;}
@@ -903,13 +911,14 @@ body.ce-on .st{opacity:1!important;transform:none!important}
     const html=clean(el.innerHTML); if(html===el.dataset.last)return;
     if(!el.textContent.trim()){el.innerHTML=el.dataset.last;msg('Text can’t be empty. Put back the previous text.');return;}
     msg('Saving…');
-    try{await rpc('deck_copy_save',{p_pass:pass,p_deck:DECK,p_key:el.dataset.ek,p_html:html});el.innerHTML=html;el.dataset.last=html;el.classList.add('ce-saved');setTimeout(()=>el.classList.remove('ce-saved'),1200);msg('Saved. Everyone with the link sees it now.');}
+    try{await rpc('deck_copy_save',{p_pass:pass,p_deck:DECK,p_key:el.dataset.ek,p_html:html});el.innerHTML=html;el.dataset.last=html;el.classList.add('ce-saved');fit();setTimeout(()=>el.classList.remove('ce-saved'),1200);msg('Saved. Everyone with the link sees it now.');}
     catch(err){msg('Could not save. Check your connection and try again.');}});
   document.addEventListener('keydown',e=>{const el=e.target.closest&&e.target.closest('[data-ek]');if(!el||!el.isContentEditable)return;
     if(e.key==='Escape'){el.innerHTML=el.dataset.last||el.innerHTML;el.blur();}
     if(e.key==='Enter'&&!e.shiftKey&&!/^(P|LI)$/.test(el.tagName)){e.preventDefault();el.blur();}
     if(e.key==='Enter'&&e.shiftKey){e.preventDefault();document.execCommand('insertLineBreak');}
     if(e.key==='Enter'&&/^(P|LI)$/.test(el.tagName)&&!e.shiftKey){e.preventDefault();el.blur();}});
+  document.addEventListener('input',e=>{const el=e.target.closest&&e.target.closest('[data-ek]');if(el)fit();});
   document.addEventListener('paste',e=>{const el=e.target.closest&&e.target.closest('[data-ek]');if(!el||!el.isContentEditable)return;e.preventDefault();
     const t=(e.clipboardData||window.clipboardData).getData('text/plain');document.execCommand('insertText',false,t);});
   openBtn.onclick=()=>{ if(pass){fetch(URL_+'/rest/v1/rpc/deck_copy_check',{method:'POST',headers:H,body:JSON.stringify({p_pass:pass})}).then(r=>r.json()).then(ok=>ok===true?start():showLogin()).catch(showLogin);} else showLogin(); };
